@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,10 @@
 |
 */
 
-Route::prefix('category')->group(function() {
-    Route::get('/', 'CategoryController@index');
-});
+Route::prefix('panel')
+    ->group(function () {
+        Route::prefix('category')
+            ->group(function () {
+                Route::get('/', 'CategoryController@index');
+            });
+    });
