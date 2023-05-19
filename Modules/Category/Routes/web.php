@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Added By Mohsen
 Route::prefix('panel')
     ->group(function () {
         Route::prefix('category')
