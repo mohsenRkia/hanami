@@ -5,15 +5,22 @@ namespace Modules\Category\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Category\Services\CategoryServices;
 
 class CategoryController extends Controller
 {
+    public function __construct(
+        private CategoryServices $categoryServices
+    ){}
+
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
+        $categories = $this->categoryServices->all();
+        dd($categories->toArray());
         return view('category::index');
     }
 
