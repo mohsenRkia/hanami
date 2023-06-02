@@ -1,5 +1,6 @@
 {
     "Category": true,
     "User": true,
-    "Article": true
+    "Article": true,
+    "Role": true
 }

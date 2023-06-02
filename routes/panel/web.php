@@ -13,4 +13,4 @@ use App\Http\Controllers\AdminPanelController;
 |
 */
 
-Route::get('/', [AdminPanelController::class, 'dashboard']);
+Route::get('/dashboard', [AdminPanelController::class, 'dashboard'])->name('dashboard');

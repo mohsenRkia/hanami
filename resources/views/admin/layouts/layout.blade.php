@@ -5,7 +5,7 @@
 
 <body class="section-bg">
 <!-- start cssload-loader -->
-@include('admin.layouts.parts.css-loader')
+{{--@include('admin.layouts.parts.css-loader')--}}
 <!-- end cssload-loader -->
 
 <!-- ================================
