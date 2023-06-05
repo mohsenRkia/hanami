@@ -15,23 +15,40 @@
                     <form action="{{route('panel.roles.roles.store')}}" method="POST">
                         @csrf
                         <div class="row">
-                                <div class="col-lg-6 col-sm-4">
-                                    <div class="input-box">
-                                        <label class="label-text">نام نقش</label>
-                                        <div class="form-group">
-                                            <span class="la la-pencil form-icon"></span>
-                                            <input class="form-control" type="text" name="name" value="" placeholder="Editor">
-                                        </div>
-                                    </div>
-                                </div><!-- end col-lg-4 -->
-
-                                <div class="col-lg-12">
-                                    <div class="btn-box">
-                                        <button class="theme-btn" type="submit">ذخیره تغییرات</button>
+                            <div class="col-lg-6 col-sm-4">
+                                <div class="input-box">
+                                    <label class="label-text">نام فارسی نقش</label>
+                                    <div class="form-group">
+                                        <span class="la la-pencil form-icon"></span>
+                                        <input class="form-control" type="text" name="name_fa" value=""
+                                               placeholder="ویرایشگر">
                                     </div>
                                 </div>
+                            </div><!-- end col-lg-4 -->
+                            <div class="col-lg-6 col-sm-4">
+                                <div class="input-box">
+                                    <label class="label-text">نام انگلیسی نقش</label>
+                                    <div class="form-group">
+                                        <span class="la la-pencil form-icon"></span>
+                                        <input class="form-control" type="text" name="name" value=""
+                                               placeholder="Editor">
+                                    </div>
+                                </div>
+                            </div><!-- end col-lg-4 -->
+                            <div class="col-lg-12">
+                                <div class="btn-box">
+                                    <button class="theme-btn" type="submit">ذخیره تغییرات</button>
+                                </div>
+                            </div>
                             <!-- end col-lg-12 -->
                         </div><!-- end row -->
+                        @if ($errors->any())
+                            <ul class="row mt-2 mx-1">
+                                @foreach ($errors->all() as $error)
+                                    <li class="col-5 alert alert-danger m-1">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </form>
                 </div>
             </div>

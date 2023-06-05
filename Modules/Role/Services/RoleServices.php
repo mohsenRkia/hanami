@@ -24,6 +24,7 @@ class RoleServices
     {
         return $this->role->create([
            'name' => $request->name,
+           'name_fa' => $request->name_fa,
            'guard_name' => 'web'
         ]);
     }

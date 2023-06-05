@@ -37,6 +37,7 @@
 <!-- end scroll top -->
 
 <!-- Template JS Files -->
+@vite(['resources/js/app.js'])
 @include('admin.layouts.parts.js-files')
 </body>
 </html>

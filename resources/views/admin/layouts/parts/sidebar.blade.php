@@ -16,7 +16,7 @@
         </div>
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu toggle-menu list-items">
-                <li class="page-active"><a href="admin-dashboard.html"><i class="la la-dashboard mr-2"></i>دشبرد</a></li>
+                <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>دشبرد</a></li>
                 <li><a href="admin-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color"></i>رزرو</a></li>
                 <li>
                     <span class="side-menu-icon toggle-menu-icon">
@@ -44,12 +44,11 @@
                     <span class="side-menu-icon toggle-menu-icon">
                         <i class="la la-angle-down"></i>
                     </span>
-                    <a href="#"><i class="la la-area-chart mr-2 text-color-8"></i>امور مالی</a>
+                    <a href="/"><i class="la la-area-chart mr-2 text-color-8"></i>سطوح دسترسی و نقش ها</a>
                     <ul class="toggle-drop-menu">
-                        <li><a href="admin-invoice.html">صورتحساب</a></li>
-                        <li><a href="admin-payments.html">پرداخت ها</a></li>
-                        <li><a href="admin-currency-list.html">لیست ارز ها</a></li>
-                        <li><a href="admin-dashboard-subscribers.html">مشتركين</a></li>
+                        <li><a href="admin-invoice.html">مدیریت دسترسی و نقش</a></li>
+                        <li><a href="admin-payments.html">دسترسی ها</a></li>
+                        <li><a href="{{route('panel.roles.roles.index')}}">نقش ها</a></li>
                     </ul>
                 </li>
                 <li>
