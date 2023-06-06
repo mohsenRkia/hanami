@@ -19,4 +19,5 @@
 <script src="/assets/js/jquery.filer.min.js"></script>
 <script src="/assets/js/jquery.ripples-min.js"></script>
 <script src="/assets/js/main-rtl.js"></script>
+@vite('resources/js/app.js')
 @yield('js')

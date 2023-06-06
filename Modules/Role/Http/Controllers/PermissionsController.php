@@ -5,16 +5,22 @@ namespace Modules\Role\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Role\Http\Requests\StorePermissionRequest;
+use Modules\Role\Services\PermissionServices;
 
 class PermissionsController extends Controller
 {
+    public function __construct(
+        private PermissionServices $permissionServices
+    ){}
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return view('role::index');
+        $permissions = $this->permissionServices->all();
+        return view('role::permissions.index',compact('permissions'));
     }
 
     /**
@@ -23,7 +29,7 @@ class PermissionsController extends Controller
      */
     public function create()
     {
-        return view('role::create');
+        return view('role::permissions.create');
     }
 
     /**
@@ -31,9 +37,10 @@ class PermissionsController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(StorePermissionRequest $request)
     {
-        //
+        $this->permissionServices->store($request);
+        return redirect()->back();
     }
 
     /**
