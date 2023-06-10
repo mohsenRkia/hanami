@@ -46,8 +46,8 @@
                     </span>
                     <a href="/"><i class="la la-area-chart mr-2 text-color-8"></i>سطوح دسترسی و نقش ها</a>
                     <ul class="toggle-drop-menu">
-                        <li><a href="admin-invoice.html">مدیریت دسترسی و نقش</a></li>
-                        <li><a href="admin-payments.html">دسترسی ها</a></li>
+                        <li><a href="{{route('panel.roles.roles.index')}}">مدیریت دسترسی و نقش</a></li>
+                        <li><a href="{{route('panel.roles.permissions.index')}}">دسترسی ها</a></li>
                         <li><a href="{{route('panel.roles.roles.index')}}">نقش ها</a></li>
                     </ul>
                 </li>
