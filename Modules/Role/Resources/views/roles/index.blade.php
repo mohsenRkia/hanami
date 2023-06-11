@@ -9,7 +9,7 @@
         <div class="form-box">
             <div class="form-title-wrap">
                 <h3 class="title">لیست نقش ها</h3>
-                <p class="font-size-14"><i class="la la-heart mr-2 text-color-6"></i><a href="{{route('panel.roles.roles.create')}}">افزودن نقش جدید</a></p>
+                <p class="font-size-14"><i class="la la-plus mr-2 text-color-6"></i><a href="{{route('panel.roles.roles.create')}}">افزودن نقش جدید</a></p>
             </div>
             <div class="form-content">
                 <div class="table-form table-responsive">
