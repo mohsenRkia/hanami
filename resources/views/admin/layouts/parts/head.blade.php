@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        @yield('title')
+        @yield('panel-title') | وب سایت هانامی
     </title>
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/favicon.png">
@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
 
     <!-- Template CSS Files -->
+    @vite('resources/css/app.css')
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="/assets/css/bootstrap-select.min.css">
@@ -29,5 +30,6 @@
     <link rel="stylesheet" href="/assets/css/flag-icon.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/style-rtl.css">
+
     @yield('css')
 </head>

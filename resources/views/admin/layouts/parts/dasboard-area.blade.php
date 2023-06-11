@@ -23,6 +23,7 @@
                         </div><!-- end breadcrumb-list -->
                     </div><!-- end col-lg-6 -->
                 </div><!-- end row -->
+                @if(request()->route()->getName() == 'panel.dashboard')
                 <div class="row mt-4">
                     <div class="col-lg-3 responsive-column-l">
                         <div class="icon-box icon-layout-2 dashboard-icon-box pb-0">
@@ -85,6 +86,7 @@
                         </div>
                     </div><!-- end col-lg-3 -->
                 </div><!-- end row -->
+                @endif
             </div>
         </div><!-- end dashboard-bread -->
         <div class="dashboard-main-content">

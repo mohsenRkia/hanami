@@ -5,7 +5,7 @@
 
 <body class="section-bg">
 <!-- start cssload-loader -->
-@include('admin.layouts.parts.css-loader')
+{{--@include('admin.layouts.parts.css-loader')--}}
 <!-- end cssload-loader -->
 
 <!-- ================================
@@ -37,6 +37,7 @@
 <!-- end scroll top -->
 
 <!-- Template JS Files -->
+@vite(['resources/js/app.js'])
 @include('admin.layouts.parts.js-files')
 </body>
 </html>
