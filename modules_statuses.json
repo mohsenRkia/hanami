@@ -4,5 +4,6 @@
     "Article": true,
     "Role": true,
     "Loction": true,
-    "Articles": true
+    "Articles": true,
+    "Tour": true
 }
