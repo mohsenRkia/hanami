@@ -3,5 +3,6 @@
     "User": true,
     "Article": true,
     "Role": true,
-    "Loction": true
+    "Loction": true,
+    "Articles": true
 }
