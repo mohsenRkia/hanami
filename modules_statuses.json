@@ -2,5 +2,6 @@
     "Category": true,
     "User": true,
     "Article": true,
-    "Role": true
+    "Role": true,
+    "Loction": true
 }
