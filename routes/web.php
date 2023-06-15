@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\home\HomeController;
+use App\Http\Controllers\home\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\home\HomeController;
 //    return view('app');
 //    });
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::resource('/contactUs', ContactUsController::class);
 //
 //Route::middleware('auth')->group(function () {
 //    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

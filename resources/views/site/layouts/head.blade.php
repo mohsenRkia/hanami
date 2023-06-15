@@ -6,7 +6,7 @@
 <title>@yield('title','قالب  html گردشگری')</title>
 
 @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-@yield('css')
+
 <!-- Favicon -->
 <link rel="icon" href="assets/images/favicon.png">
 
@@ -30,5 +30,5 @@
 <link rel="stylesheet" href="assets/css/flag-icon.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/style-rtl.css">
-
+@yield('css')
 

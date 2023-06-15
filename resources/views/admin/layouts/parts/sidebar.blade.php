@@ -16,7 +16,7 @@
         </div>
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu toggle-menu list-items">
-                <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>دشبرد</a></li>
+                <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>داشبرد</a></li>
                 <li><a href="admin-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color"></i>رزرو</a></li>
                 <li>
                     <span class="side-menu-icon toggle-menu-icon">
@@ -38,6 +38,7 @@
                 </li>
                 <li><a href="admin-dashboard-visa.html"><i class="la la-plane mr-2 text-color-4"></i>درخواست ویزا</a></li>
                 <li><a href="admin-dashboard-reviews.html"><i class="la la-star mr-2 text-color-5"></i>نظرات</a></li>
+                <li><a href="admin-dashboard-reviews.html"><i class="la la-star-and-crescent mr-2 text-color-5"></i>ارتباط با ما</a></li>
                 <li><a href="admin-dashboard-wishlist.html"><i class="la la-heart mr-2 text-color-6"></i>لیست علاقه مندی ها</a></li>
                 <li><a href="admin-dashboard-travel-agents.html"><i class="la la-text-width mr-2 text-color-7"></i>آژانس های مسافرتی</a></li>
                 <li>

@@ -37,7 +37,6 @@
         @include('site.home-sections.clientlogo-area')
         <!-- ======  END CLIENTLOGO AREA ===== -->
     </section>
-
     <!-- ======  START MODAL-SHARED AREA ===== -->
     @include('site.home-sections.modal-area')
     <!-- ======  END MODAL-SHARED AREA ===== -->
