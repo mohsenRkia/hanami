@@ -38,7 +38,7 @@
                 </li>
                 <li><a href="admin-dashboard-visa.html"><i class="la la-plane mr-2 text-color-4"></i>درخواست ویزا</a></li>
                 <li><a href="admin-dashboard-reviews.html"><i class="la la-star mr-2 text-color-5"></i>نظرات</a></li>
-                <li><a href="admin-dashboard-reviews.html"><i class="la la-star-and-crescent mr-2 text-color-5"></i>ارتباط با ما</a></li>
+                <li><a href="{{route('panel.contactUs')}}"><i class="la la-star-and-crescent mr-2 text-color-5"></i>ارتباط با ما</a></li>
                 <li><a href="admin-dashboard-wishlist.html"><i class="la la-heart mr-2 text-color-6"></i>لیست علاقه مندی ها</a></li>
                 <li><a href="admin-dashboard-travel-agents.html"><i class="la la-text-width mr-2 text-color-7"></i>آژانس های مسافرتی</a></li>
                 <li>
