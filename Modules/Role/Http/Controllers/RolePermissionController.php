@@ -5,12 +5,14 @@ namespace Modules\Role\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Role\Services\PermissionServices;
 use Modules\Role\Services\RolePermissionServices;
+use Modules\Role\Services\RoleServices;
 
 class RolePermissionController extends Controller
 {
     public function __construct(
-        private RolePermissionServices $rolePermissionServices
+        private RolePermissionServices $rolePermissionServices , private RoleServices $roleServices , private PermissionServices $permissionServices
     ){}
     /**
      * Display a listing of the resource.
@@ -18,8 +20,8 @@ class RolePermissionController extends Controller
      */
     public function index()
     {
-        $permissions = [];
-        return view('role::role-permission.index',compact('permissions'));
+        $role_permissions = [];
+        return view('role::role-permission.index',compact('role_permissions'));
     }
 
     /**
@@ -28,7 +30,9 @@ class RolePermissionController extends Controller
      */
     public function create()
     {
-        return view('role::permissions.create');
+        $rols = $this->roleServices->all();
+        $permissions = $this->permissionServices->all();
+        return view('role::role-permission.create', compact('rols' , 'permissions'));
     }
 
     /**
