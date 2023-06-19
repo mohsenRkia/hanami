@@ -10,6 +10,10 @@ Route::prefix('panel')->name('panel.')->group(function () {
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
         Route::resource('manage', RolePermissionController::class);
+        Route::get('assignPermissionToRole', [RolePermissionController::class,'assignPermissionToRoleCreate'])->name('manage.assignPermissionToRoleCreate');
+        Route::post('assignPermissionToRole', [RolePermissionController::class,'assignPermissionToRoleStore'])->name('manage.assignPermissionToRoleStore');
+        Route::get('assignRoleToUserCreate', [RolePermissionController::class,'assignRoleToUserCreate'])->name('manage.assignRoleToUserCreate');
+        Route::post('assignRoleToUserStore', [RolePermissionController::class,'assignRoleToUserStore'])->name('manage.assignRoleToUserStore');
     });
 });
 
