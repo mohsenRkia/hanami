@@ -2,7 +2,7 @@
 
 namespace Modules\Role\Services;
 
-use http\Client\Curl\User;
+use App\Models\User;
 use Spatie\Permission\Models\Role;
 
 class RoleServices
@@ -38,8 +38,11 @@ class RoleServices
 
     public function giveRoleToUser($request)
     {
-        dd($request->toArray());
-        $user = User::find($request->id);
-        return $user->assignRole();
+        $user = User::find($request->user_id);
+        return $user->assignRole($request->role);
+    }
+    public function giveRoleToUserUpdate($request,$user)
+    {
+        return $user->syncRoles($request->role);
     }
 }

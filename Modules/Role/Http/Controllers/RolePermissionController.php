@@ -3,6 +3,7 @@
 namespace Modules\Role\Http\Controllers;
 
 use App\Http\Services\UserServices;
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -55,7 +56,17 @@ class RolePermissionController extends Controller
         $this->roleServices->giveRoleToUser($request);
         return redirect()->back();
     }
-
+    public function assignRoleToUserEdit(User $user)
+    {
+//        dd($user->getRoleNames());
+        $roles = $this->roleServices->all();
+        return view('role::role-user.edit', compact('roles' , 'user'));
+    }
+    public function assignRoleToUserUpdate(User $user,assignRoleToUserRequest $request)
+    {
+        $this->roleServices->giveRoleToUserUpdate($request,$user);
+        return redirect()->back();
+    }
     /**
      * Show the specified resource.
      * @param int $id

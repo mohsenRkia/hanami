@@ -3,8 +3,8 @@
     <div class="col-lg-7">
         <div class="copy-right padding-top-30px">
             <p class="copy__desc">
-                &copy; تمامی حقوق محفوظ است . توسعه با
-                <span class="la la-heart"></span>  توسط <a href="https://arezo-hoseini.ir">آرزو حسینی</a>
+                &copy; تمامی حقوق محفوظ است . توسعه
+                  توسط <a href="#">M2design</a>
             </p>
         </div><!-- end copy-right -->
     </div><!-- end col-lg-7 -->

@@ -25,30 +25,33 @@
                         </thead>
                         <tbody>
                         @foreach($users as $key => $user)
-                            <tr>
-                                <th scope="row">{{++$key}}</th>
-                                <td>
-                                    <div class="table-content">
-                                        <h3 class="title">{{$user->name}}</h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="table-content">
-                                        <h3 class="title">{{$user->email}}</h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="table-content">
-                                        <a href="#" class="theme-btn theme-btn-small" data-toggle="tooltip"
-                                           data-placement="top" title="ویرایش"><i class="la la-edit"></i></a>
-                                        <a href="#"
-                                           class="theme-btn theme-btn-small border-danger bg-danger mr-2 text-white"
-                                           data-toggle="tooltip" data-placement="top" title="حذف"><i
-                                                class="la la-times"></i></a>
+                            @if(count($user->getRoleNames()) > 0)
+                                <tr>
+                                    <th scope="row">{{++$key}}</th>
+                                    <td>
+                                        <div class="table-content">
+                                            <h3 class="title">{{$user->name}}</h3>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-content">
+                                            <h3 class="title">{{$user->email}}</h3>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-content">
+                                            <a href="{{route('panel.roles.manage.assignRoleToUserEdit',['user' => $user->id])}}"
+                                               class="theme-btn theme-btn-small" data-toggle="tooltip"
+                                               data-placement="top" title="ویرایش"><i class="la la-edit"></i></a>
+{{--                                            <a href="#"--}}
+{{--                                               class="theme-btn theme-btn-small border-danger bg-danger mr-2 text-white"--}}
+{{--                                               data-toggle="tooltip" data-placement="top" title="حذف"><i--}}
+{{--                                                    class="la la-times"></i></a>--}}
 
-                                    </div>
-                                </td>
-                            </tr>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                         </tbody>
                     </table>
@@ -92,10 +95,10 @@
                                     <div class="table-content">
                                         <a href="#" class="theme-btn theme-btn-small" data-toggle="tooltip"
                                            data-placement="top" title="ویرایش"><i class="la la-edit"></i></a>
-                                        <a href="#"
-                                           class="theme-btn theme-btn-small border-danger bg-danger mr-2 text-white"
-                                           data-toggle="tooltip" data-placement="top" title="حذف"><i
-                                                class="la la-times"></i></a>
+{{--                                        <a href="#"--}}
+{{--                                           class="theme-btn theme-btn-small border-danger bg-danger mr-2 text-white"--}}
+{{--                                           data-toggle="tooltip" data-placement="top" title="حذف"><i--}}
+{{--                                                class="la la-times"></i></a>--}}
                                     </div>
                                 </td>
                             </tr>
