@@ -1,14 +1,14 @@
 <template>
     <a @click="deleteItem"
-       class="btn btn-sm btn-danger text-white delete_article_ajax">
-        حذف
+       class="theme-btn theme-btn-small border-danger bg-danger text-white delete_article_ajax" data-toggle="tooltip" data-placement="top" title="حذف">
+        <i class="la la-times"></i>
     </a>
 </template>
 
 <script>
 export default {
     name: "DeleteComponent",
-    props: ['itemId','postType'],
+    props: ['itemId','postType','postModule'],
     methods: {
         deleteItem() {
             this.$swal.fire({
@@ -17,12 +17,12 @@ export default {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                cancelButtonColor: '#f00125',
                 confirmButtonText: 'بله، حذف شود.',
                 cancelButtonText: 'لغو'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(`/panel/${this.postType}/${this.itemId}`)
+                    axios.delete(`/panel/${this.postModule}/${this.postType}/${this.itemId}`)
                         .then((res) => {
                             if (res.data == true){
                                 this.$swal.fire({

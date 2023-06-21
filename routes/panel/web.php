@@ -16,3 +16,4 @@ use App\Http\Controllers\admim\AdminContactUsController;
 
 Route::get('/dashboard', [AdminPanelController::class, 'dashboard'])->name('dashboard');
 Route::get('/contactUs', [AdminContactUsController::class, 'contactUs'])->name('contactUs');
+

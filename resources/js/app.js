@@ -9,15 +9,23 @@ import { createApp } from 'vue';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
- * registering components with the application instance so they are ready
+ * registering components with the application instance 'so' they are ready
  * to use in your application's views. An example is included for you.
  */
+import VueSweetalert2 from "vue-sweetalert2";
+// import 'sweetalert2/dist/sweetalert2.min.css'
+import '@sweetalert2/themes/borderless/borderless.scss';
 
 const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
 
+
+//ADMIN
+import DeleteComponent from "@/Components/panel/DeleteComponent.vue";
+
+app.component('delete-component', DeleteComponent);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -31,9 +39,15 @@ app.component('example-component', ExampleComponent);
 // });
 
 /**
- * Finally, we will attach the application instance to a HTML element with
+ * Finally, we will attach the application instance to 'a' HTML element with
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
+const options = {
+    confirmButtonColor: '#41b882',
+    cancelButtonColor: '#ff7674',
+};
+
+app.use(VueSweetalert2,options);
 app.mount('#app');

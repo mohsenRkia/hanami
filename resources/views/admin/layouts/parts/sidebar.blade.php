@@ -45,7 +45,7 @@
                     <span class="side-menu-icon toggle-menu-icon">
                         <i class="la la-angle-down"></i>
                     </span>
-                    <a href="/"><i class="la la-area-chart mr-2 text-color-8"></i>سطوح دسترسی و نقش ها</a>
+                    <a href="#"><i class="la la-area-chart mr-2 text-color-8"></i>سطوح دسترسی و نقش ها</a>
                     <ul class="toggle-drop-menu">
                         <li><a href="{{route('panel.roles.manage.index')}}">مدیریت دسترسی و نقش</a></li>
                         <li><a href="{{route('panel.roles.permissions.index')}}">دسترسی ها</a></li>
@@ -58,8 +58,9 @@
                     </span>
                     <a href="#"><i class="la la-map-signs mr-2 text-color-9"></i>لوکیشن ها</a>
                     <ul class="toggle-drop-menu">
-                        <li><a href="admin-countries.html">کشورها</a></li>
-                        <li><a href="admin-airlines.html"> خطوط هوایی</a></li>
+                        <li><a href="{{route('areas.index')}}">قاره ها</a></li>
+                        <li><a href="{{route('countries.index')}}">کشورها</a></li>
+                        <li><a href="{{route('cities.index')}}">شهر و استان ها</a></li>
                     </ul>
                 </li>
                 <li><a href="admin-dashboard-settings.html"><i class="la la-cog mr-2 text-color-10"></i>تنظیمات</a></li>

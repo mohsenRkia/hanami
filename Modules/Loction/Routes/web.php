@@ -1,5 +1,7 @@
 <?php
-
+use Modules\Loction\Http\Controllers\AreasController;
+use Modules\Loction\Http\Controllers\CountriesController;
+use Modules\Loction\Http\Controllers\CitiesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +12,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::prefix('loction')->group(function() {
-    Route::get('/', 'LoctionController@index');
+Route::prefix('panel')->group(function() {
+    Route::prefix('/loction')->group(function() {
+        Route::resource('/areas', AreasController::class );
+        Route::resource('/countries', CountriesController::class );
+        Route::resource('/cities', CitiesController::class );
+    });
 });
+
+
+
+
