@@ -2,15 +2,21 @@
 
 namespace Modules\Role\Http\Controllers;
 
+use App\Http\Services\UserServices;
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Role\Services\RolePermissionServices;
+use Modules\Role\Http\Requests\assignPermissionToRoleRequest;
+use Modules\Role\Http\Requests\assignRoleToUserRequest;
+use Modules\Role\Services\PermissionServices;
+use Modules\Role\Services\RoleServices;
 
 class RolePermissionController extends Controller
 {
     public function __construct(
-        private RolePermissionServices $rolePermissionServices
+        private RoleServices $roleServices , private PermissionServices $permissionServices ,
+        private UserServices $userServices
     ){}
     /**
      * Display a listing of the resource.
@@ -18,30 +24,49 @@ class RolePermissionController extends Controller
      */
     public function index()
     {
-        $permissions = [];
-        return view('role::role-permission.index',compact('permissions'));
+        $roles = $this->roleServices->all();
+        $users = $this->userServices->all();
+        return view('role::role-permission.index',compact('roles','users'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('role::permissions.create');
-    }
-
     /**
      * Store a newly created resource in storage.
      * @param Request $request
      * @return Renderable
      */
-    public function store(StorePermissionRequest $request)
+    public function assignPermissionToRoleCreate()
     {
-        $this->permissionServices->store($request);
+        $roles = $this->roleServices->all();
+        $permissions = $this->permissionServices->all();
+        return view('role::role-permission.create', compact('roles' , 'permissions'));
+    }
+    public function assignPermissionToRoleStore(assignPermissionToRoleRequest $request)
+    {
+        $this->roleServices->givePermissionToRole($request);
         return redirect()->back();
     }
 
+    public function assignRoleToUserCreate()
+    {
+        $roles = $this->roleServices->all();
+        $users = $this->userServices->all();
+        return view('role::role-user.create', compact('roles' , 'users'));
+    }
+    public function assignRoleToUserStore(assignRoleToUserRequest $request)
+    {
+        $this->roleServices->giveRoleToUser($request);
+        return redirect()->back();
+    }
+    public function assignRoleToUserEdit(User $user)
+    {
+//        dd($user->getRoleNames());
+        $roles = $this->roleServices->all();
+        return view('role::role-user.edit', compact('roles' , 'user'));
+    }
+    public function assignRoleToUserUpdate(User $user,assignRoleToUserRequest $request)
+    {
+        $this->roleServices->giveRoleToUserUpdate($request,$user);
+        return redirect()->back();
+    }
     /**
      * Show the specified resource.
      * @param int $id

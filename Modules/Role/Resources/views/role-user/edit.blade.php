@@ -1,42 +1,43 @@
 @extends('admin.layouts.layout')
 
-@section('panel-title','تخصیص نقش به کاربر')
-@section('panel-first-breadcrumb-title','مدیریت نقش ها و دسترسی ها')
-@section('panel-second-breadcrumb-subject','تخصیص نقش به کاربر')
+@section('panel-title','نقش ها')
+@section('panel-first-breadcrumb-title','نقش ها و دسترسی ها')
+@section('panel-second-breadcrumb-subject','نقش ها')
 
 @section('panel-content')
     <div class="col-lg-12">
         <div class="form-box">
             <div class="form-title-wrap">
-                <h3 class="title">تخصیص نقش به یک کاربر</h3>
+                <h3 class="title">ویرایش دسترسی های {{$user->name}}</h3>
             </div>
             <div class="form-content">
                 <div class="contact-form-action">
-                    <form action="{{route('panel.roles.manage.assignPermissionToRoleStore')}}" method="POST">
+                    <form action="{{route('panel.roles.manage.assignRoleToUserUpdate',['user' => $user->id])}}"
+                          method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-lg-6 col-sm-4">
-                                <h3 class="title m-3">کاربران ها</h3>
+                                <h3 class="title m-3">کاربر</h3>
                                 <div>
                                     <div class="checkbox-wrap">
-                                        @foreach($roles as $role)
                                         <div class="custom-radio">
-                                            <input name="role_name" value="{{$role->name}}" type="radio" id="{{'role_' . $role->id}}">
-                                            <label for="{{'role_' . $role->id}}">{{$role->name_fa}}</label>
+                                            <input checked disabled name="user_id" value="{{$user->id}}" type="radio"
+                                                   id="{{'user_' . $user->id}}">
+                                            <label for="{{'user_' . $user->id}}"><b
+                                                    class="text-info">{{$user->name}}</b></label> <span>({{$user->email}})</span>
                                         </div>
-                                        @endforeach
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-4">
-                                <h3 class="title m-3">دسترسی ها</h3>
+                                <h3 class="title m-3">نقش ها</h3>
                                 <div>
                                     <div class="checkbox-wrap">
-                                        @foreach($permissions as $permission)
-                                        <div class="custom-checkbox">
-                                            <input name="permission_name[]" value="{{$permission->name}}" type="checkbox" id="{{'permission_' . $permission->id}}">
-                                            <label for="{{'permission_' . $permission->id}}">{{$permission->name_fa}}</label>
-                                        </div>
+                                        @foreach($roles as $role)
+                                            <div class="custom-checkbox">
+                                                <input name="role[]" @foreach($user->getRoleNames() as $assinedRole){{($assinedRole == $role->name) ? 'checked' : null}} @endforeach value="{{$role->name}}" type="checkbox" id="{{'role_' . $role->id}}">
+                                                <label for="{{'role_' . $role->id}}">{{$role->name_fa}}</label>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>

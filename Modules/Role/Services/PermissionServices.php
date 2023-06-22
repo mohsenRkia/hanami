@@ -29,6 +29,7 @@ class PermissionServices
     {
         return $this->permission->create([
             'name' => $request->name,
+            'name_fa' => $request->name_fa,
             'guard_name' => 'web'
         ]);
     }
