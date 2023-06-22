@@ -38,7 +38,7 @@
                             <td>
                                 <div class="table-content">
                                     <a href="{{ route('areas.edit', $area->id) }}" class="theme-btn theme-btn-small mx-1" data-toggle="tooltip" data-placement="top" title="ویرایش"><i class="la la-edit"></i></a>
-                                    <delete-component item-id="{{$area->id}}" post-type="areas" post-module="loction"></delete-component>
+{{--                                    <delete-component item-id="{{$area->id}}" post-type="areas" post-module="loction"></delete-component>--}}
                                 </div>
                             </td>
                         </tr>

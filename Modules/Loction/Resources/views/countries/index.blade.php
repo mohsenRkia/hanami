@@ -40,7 +40,7 @@
                             <td>
                                 <div class="table-content">
                                     <a href="{{ route('countries.edit', $country->id) }}" class="theme-btn theme-btn-small mx-1" data-toggle="tooltip" data-placement="top" title="ویرایش"><i class="la la-edit"></i></a>
-                                    <delete-component item-id="{{$country->id}}" post-type="countries" post-module="loction"></delete-component>
+{{--                                    <delete-component item-id="{{$country->id}}" post-type="countries" post-module="loction"></delete-component>--}}
                                 </div>
                             </td>
                         </tr>
