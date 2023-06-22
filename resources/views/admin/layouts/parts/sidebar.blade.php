@@ -16,7 +16,11 @@
         </div>
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu toggle-menu list-items">
+<<<<<<< HEAD
                 <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>دشبرد</a></li>
+=======
+                <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>داشبرد</a></li>
+>>>>>>> majid
                 <li><a href="admin-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color"></i>رزرو</a></li>
                 <li>
                     <span class="side-menu-icon toggle-menu-icon">
@@ -38,13 +42,18 @@
                 </li>
                 <li><a href="admin-dashboard-visa.html"><i class="la la-plane mr-2 text-color-4"></i>درخواست ویزا</a></li>
                 <li><a href="admin-dashboard-reviews.html"><i class="la la-star mr-2 text-color-5"></i>نظرات</a></li>
+                <li><a href="{{route('panel.contactUs')}}"><i class="la la-star-and-crescent mr-2 text-color-5"></i>ارتباط با ما</a></li>
                 <li><a href="admin-dashboard-wishlist.html"><i class="la la-heart mr-2 text-color-6"></i>لیست علاقه مندی ها</a></li>
                 <li><a href="admin-dashboard-travel-agents.html"><i class="la la-text-width mr-2 text-color-7"></i>آژانس های مسافرتی</a></li>
                 <li>
                     <span class="side-menu-icon toggle-menu-icon">
                         <i class="la la-angle-down"></i>
                     </span>
+<<<<<<< HEAD
                     <a href="/"><i class="la la-area-chart mr-2 text-color-8"></i>سطوح دسترسی و نقش ها</a>
+=======
+                    <a href="#"><i class="la la-area-chart mr-2 text-color-8"></i>سطوح دسترسی و نقش ها</a>
+>>>>>>> majid
                     <ul class="toggle-drop-menu">
                         <li><a href="{{route('panel.roles.manage.index')}}">مدیریت دسترسی و نقش</a></li>
                         <li><a href="{{route('panel.roles.permissions.index')}}">دسترسی ها</a></li>
@@ -57,8 +66,9 @@
                     </span>
                     <a href="#"><i class="la la-map-signs mr-2 text-color-9"></i>لوکیشن ها</a>
                     <ul class="toggle-drop-menu">
-                        <li><a href="admin-countries.html">کشورها</a></li>
-                        <li><a href="admin-airlines.html"> خطوط هوایی</a></li>
+                        <li><a href="{{route('areas.index')}}">قاره ها</a></li>
+                        <li><a href="{{route('countries.index')}}">کشورها</a></li>
+                        <li><a href="{{route('cities.index')}}">شهر و استان ها</a></li>
                     </ul>
                 </li>
                 <li><a href="admin-dashboard-settings.html"><i class="la la-cog mr-2 text-color-10"></i>تنظیمات</a></li>

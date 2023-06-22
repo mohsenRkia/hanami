@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\home\HomeController;
+use App\Http\Controllers\home\ContactUsController;
+>>>>>>> majid
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +19,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
     Route::get('/',function (){
        dd('ll');
     });
+=======
+//    Route::get('/',function (){
+//    return view('app');
+//    });
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::resource('/contactUs', ContactUsController::class);
+>>>>>>> majid
 //
 //Route::middleware('auth')->group(function () {
 //    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -27,4 +40,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+<<<<<<< HEAD
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+Route::get('/main', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+>>>>>>> majid
