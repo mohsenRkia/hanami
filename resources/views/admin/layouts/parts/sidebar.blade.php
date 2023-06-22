@@ -16,11 +16,8 @@
         </div>
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu toggle-menu list-items">
-<<<<<<< HEAD
-                <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>دشبرد</a></li>
-=======
+
                 <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>داشبرد</a></li>
->>>>>>> majid
                 <li><a href="admin-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color"></i>رزرو</a></li>
                 <li>
                     <span class="side-menu-icon toggle-menu-icon">
@@ -49,11 +46,7 @@
                     <span class="side-menu-icon toggle-menu-icon">
                         <i class="la la-angle-down"></i>
                     </span>
-<<<<<<< HEAD
-                    <a href="/"><i class="la la-area-chart mr-2 text-color-8"></i>سطوح دسترسی و نقش ها</a>
-=======
                     <a href="#"><i class="la la-area-chart mr-2 text-color-8"></i>سطوح دسترسی و نقش ها</a>
->>>>>>> majid
                     <ul class="toggle-drop-menu">
                         <li><a href="{{route('panel.roles.manage.index')}}">مدیریت دسترسی و نقش</a></li>
                         <li><a href="{{route('panel.roles.permissions.index')}}">دسترسی ها</a></li>

@@ -15,8 +15,6 @@ use App\Http\Controllers\admim\AdminContactUsController;
 */
 
 Route::get('/dashboard', [AdminPanelController::class, 'dashboard'])->name('dashboard');
-<<<<<<< HEAD
-=======
+
 Route::get('/contactUs', [AdminContactUsController::class, 'contactUs'])->name('contactUs');
 
->>>>>>> majid
