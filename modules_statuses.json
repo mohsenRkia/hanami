@@ -2,12 +2,8 @@
     "Category": true,
     "User": true,
     "Article": true,
-<<<<<<< HEAD
-    "Role": true
-=======
     "Role": true,
     "Loction": true,
     "Articles": true,
     "Tour": true
->>>>>>> majid
 }
