@@ -10,7 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
+use Modules\Tour\Http\Controllers\TourController;
 
-Route::prefix('tour')->group(function() {
-    Route::get('/', 'TourController@index');
+Route::prefix('panel')->name('panel.')->group(function () {
+    Route::prefix('tours')->name('tours.')->group(function() {
+        Route::get('/', [TourController::class,'index'])->name('index');
+        Route::get('/create', [TourController::class,'create'])->name('create');
+        Route::post('/quick/store', [TourController::class,'quickStoreTour']);
+
+    });
 });

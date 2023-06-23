@@ -23,9 +23,18 @@ app.component('example-component', ExampleComponent);
 
 
 //ADMIN
+// import MainEditComponent from './components/panel/articles/edit/MainEditComponent.vue';
+// import ArticleStatusComponent from './components/panel/articles/ArticleStatusComponent.vue';
 import DeleteComponent from "@/Components/panel/DeleteComponent.vue";
+// import ArticleComponent from './components/panel/articles/create/MainComponent.vue';
+import ArticleComponent from '@/Components/panel/articles/Add/ArticleComponent.vue';
 
+
+app.component('article-main-component', ArticleComponent);
+// app.component('article-main-edit-component', MainEditComponent);
+// app.component('article-status-component', ArticleStatusComponent);
 app.component('delete-component', DeleteComponent);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

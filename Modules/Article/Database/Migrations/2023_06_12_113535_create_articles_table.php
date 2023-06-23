@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->unsignedInteger('category_id');
+            $table->string('type');
             $table->boolean('status')->default(0);
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();

@@ -5,16 +5,25 @@ namespace Modules\Tour\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Article\Entities\Article;
+use Modules\Category\Services\CategoryServices;
+use Modules\Tour\Services\TourServices;
 
 class TourController extends Controller
 {
+    public function __construct(
+        private TourServices $tourServices,
+        private CategoryServices $categoryServices
+    ){}
+
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return view('tour::index');
+        $tours = $this->tourServices->getallWhereIsTour();
+        return view('tour::tours.index',compact('tours'));
     }
 
     /**
@@ -23,9 +32,14 @@ class TourController extends Controller
      */
     public function create()
     {
-        return view('tour::create');
+        $categories = $this->categoryServices->all();
+        return view('tour::tours.create',compact('categories'));
     }
-
+    public function quickStoreTour(Request $request)
+    {
+        $article = $this->tourServices->quickStore($request);
+        return response()->json($article);
+    }
     /**
      * Store a newly created resource in storage.
      * @param Request $request
