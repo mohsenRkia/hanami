@@ -12,7 +12,8 @@
             </div>
             <div id="app" class="form-content">
                 <article-main-component
-                    :articleCategories = {{json_encode($categories)}}
+                    :article-categories = "{{json_encode($categories)}}"
+                    :article-types= "{{json_encode($articleTypes)}}"
                 ></article-main-component>
             </div>
         </div><!-- end form-box -->

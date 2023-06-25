@@ -18,6 +18,7 @@ Route::prefix('panel')->name('panel.')->group(function () {
         Route::get('/', [TourController::class,'index'])->name('index');
         Route::get('/create', [TourController::class,'create'])->name('create');
         Route::post('/quick/store', [TourController::class,'quickStoreTour']);
+        Route::put('/update/{tour}', [TourController::class,'update']);
 
     });
 });

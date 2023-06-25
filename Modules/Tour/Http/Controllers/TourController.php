@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Article\Entities\Article;
+use Modules\Article\Services\ArticleTypeServices;
 use Modules\Category\Services\CategoryServices;
 use Modules\Tour\Services\TourServices;
 
@@ -13,7 +14,8 @@ class TourController extends Controller
 {
     public function __construct(
         private TourServices $tourServices,
-        private CategoryServices $categoryServices
+        private CategoryServices $categoryServices,
+        private ArticleTypeServices $articleTypeServices
     ){}
 
     /**
@@ -33,7 +35,9 @@ class TourController extends Controller
     public function create()
     {
         $categories = $this->categoryServices->all();
-        return view('tour::tours.create',compact('categories'));
+        $articleTypes = $this->articleTypeServices->all();
+
+        return view('tour::tours.create',compact('categories','articleTypes'));
     }
     public function quickStoreTour(Request $request)
     {
@@ -76,9 +80,10 @@ class TourController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $tour)
     {
-        //
+        $updatedTour = $this->tourServices->updateTour($request,$tour);
+        return response()->json($updatedTour);
     }
 
     /**

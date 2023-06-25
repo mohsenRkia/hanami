@@ -12,6 +12,6 @@ class CategoryServices
 
     public function all()
     {
-        return $this->category->all();
+        return $this->category->all('name','id');
     }
 }
