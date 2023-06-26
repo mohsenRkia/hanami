@@ -42,5 +42,10 @@ class TourServices
         return $article;
     }
 
+    public function findTour($id)
+    {
+        return $this->article->find($id);
+    }
+
 
 }

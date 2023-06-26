@@ -35,7 +35,7 @@
                                         class="badge badge-success py-1 px-2">فعال</span></td>
                                 <td>
                                     <div class="table-content">
-                                        <a href="#" class="theme-btn theme-btn-small" data-toggle="tooltip"
+                                        <a href="{{route('panel.tours.edit' , ['id' => $tour->id])}}" class="theme-btn theme-btn-small" data-toggle="tooltip"
                                            data-placement="top" title="ویرایش"><i class="la la-edit"></i></a>
                                         <delete-component item-id="{{$tour->id}}" post-type="tours" post-module="tour"></delete-component>
 

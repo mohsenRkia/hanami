@@ -71,7 +71,8 @@ class TourController extends Controller
      */
     public function edit($id)
     {
-        return view('tour::edit');
+        $tour = $this->tourServices->findTour($id);
+        return view('tour::edit', compact('tour'));
     }
 
     /**

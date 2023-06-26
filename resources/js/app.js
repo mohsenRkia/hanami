@@ -23,14 +23,15 @@ app.component('example-component', ExampleComponent);
 
 
 //ADMIN
-// import MainEditComponent from './components/panel/articles/edit/MainEditComponent.vue';
+
 // import ArticleStatusComponent from './components/panel/articles/ArticleStatusComponent.vue';
 import DeleteComponent from "@/Components/panel/DeleteComponent.vue";
 // import ArticleComponent from './components/panel/articles/create/MainComponent.vue';
 import ArticleComponent from '@/Components/panel/articles/Add/ArticleComponent.vue';
-
+import ArticleEditComponent from '@/Components/panel/articles/Edit/ArticleEditComponent.vue'
 
 app.component('article-main-component', ArticleComponent);
+app.component('article-edit-main-component', ArticleEditComponent);
 // app.component('article-main-edit-component', MainEditComponent);
 // app.component('article-status-component', ArticleStatusComponent);
 app.component('delete-component', DeleteComponent);
