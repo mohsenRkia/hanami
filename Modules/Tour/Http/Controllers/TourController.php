@@ -45,16 +45,6 @@ class TourController extends Controller
         return response()->json($article);
     }
     /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Show the specified resource.
      * @param int $id
      * @return Renderable
@@ -71,8 +61,10 @@ class TourController extends Controller
      */
     public function edit($id)
     {
+        $categories = $this->categoryServices->all();
+        $articleTypes = $this->articleTypeServices->all();
         $tour = $this->tourServices->findTour($id);
-        return view('tour::edit', compact('tour'));
+        return view('tour::tours.edit', compact('tour','categories','articleTypes'));
     }
 
     /**

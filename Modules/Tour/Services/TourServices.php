@@ -31,8 +31,9 @@ class TourServices
     public function updateTour($request,$id)
     {
         $data = (object)$request->data;
+        return $data;
         $article = $this->article->where('id',$id)->update([
-            'title' => $data->name,
+            'title' => $data->title,
             'description' => $data->description,
             'category_id' => $request->category_id,
             'type' => $request->type,

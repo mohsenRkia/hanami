@@ -26,7 +26,6 @@ app.component('example-component', ExampleComponent);
 
 // import ArticleStatusComponent from './components/panel/articles/ArticleStatusComponent.vue';
 import DeleteComponent from "@/Components/panel/DeleteComponent.vue";
-// import ArticleComponent from './components/panel/articles/create/MainComponent.vue';
 import ArticleComponent from '@/Components/panel/articles/Add/ArticleComponent.vue';
 import ArticleEditComponent from '@/Components/panel/articles/Edit/ArticleEditComponent.vue'
 

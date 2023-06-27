@@ -18,6 +18,7 @@
                     title="توضیحات مطلب"
                     :article-id="articleId"
                     @emit-editor-event="onChangedDescriptionEn"
+                    :oldContent="this.article.description"
                 />
             </div>
         </div><!-- end col-lg-4 -->
@@ -30,16 +31,16 @@ import MyEditorComponent from "@/Components/panel/editor/MyEditorComponent.vue";
 
 export default {
 
-    props: ['categories', 'currentId', 'articleId'],
-    name: "ContentComponent",
+    props: ['articleId','article'],
+    name: "ContentEditComponent",
     components: {
         MyEditorComponent
     },
     data() {
         return {
             contentData: {
-                name: '',
-                description : ''
+                name: this.article.title,
+                description : this.article.description
             }
         }
     },
