@@ -101,6 +101,7 @@ export default {
         updateArticle() {
             axios.put(`/panel/tours/update/${this.article.id}`, {
                 type: this.currentType,
+                status : this.status,
                 category_id: this.category_id,
                 data: this.childContentData[0],
                 // book: this.childBookData[0],
@@ -113,7 +114,7 @@ export default {
                     'success'
                 )
                 setTimeout(() => {
-                    // location.replace('/panel/tours')
+                    location.replace('/panel/tours')
                 }, 2000)
             }).catch((e) => {
                 this.$swal({

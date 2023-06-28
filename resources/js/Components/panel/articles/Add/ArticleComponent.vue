@@ -56,10 +56,9 @@
         <div v-if="newArticleId > 0" class="row">
             <UploadComponent v-show="newArticleId != null" :mediaable-id="newArticleId"/>
         </div>
-        <template v-if="currentType == 'tour'">
-            TOOOOUUUUR
-<!--            <BookComponent @book-inputs="onChangedBook" :agegroups="articleAgegroups"-->
-<!--                           :article-id="newArticleId"></BookComponent>-->
+        <template v-if="currentType === 'tour'">
+            <TourInfoComponent @tour-info-inputs="onChangedTourInfo"
+                           :article-id="newArticleId"></TourInfoComponent>
         </template>
     </div>
     <div class="col-lg-12">
@@ -73,24 +72,29 @@
 <script>
 import constants from "@/constants.js";
 import ContentComponent from "@/Components/panel/articles/Add/ContentComponent.vue";
-import HEADER from "@/constants.js";
 import UploadComponent from "@/components/Uploader/UploadComponent.vue";
+import TourInfoComponent from "@/Components/panel/articles/Add/detailes/TourInfoComponent.vue";
 
 export default {
     name: "ArticleComponent",
     props: ['articleTypes', 'articleCategories'],
     components: {
+        TourInfoComponent,
         ContentComponent,
         UploadComponent,
     },
     data() {
         return {
             newArticleId: null,
-            childContentData: [],
+            childContentData: [{
+                name: 'No Name',
+                description: 'No Description'
+            }],
             currentType: 'notype',
             childImageData: [],
             category_id: 0,
             status: null,
+            tourInfo : []
         }
     },
     watch: {
@@ -117,6 +121,10 @@ export default {
         onChangedContent(value) {
             this.childContentData = []
             this.childContentData.push(JSON.parse(JSON.stringify(value)))
+        },
+        onChangedTourInfo(value) {
+            this.tourInfo = []
+            this.tourInfo.push(JSON.parse(JSON.stringify(value)))
         },
         quickStore() {
             if (this.newArticleId == null) {
