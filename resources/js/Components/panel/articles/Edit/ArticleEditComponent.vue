@@ -106,7 +106,7 @@ export default {
                 data: this.childContentData[0],
                 // book: this.childBookData[0],
             }, constants.AXIOS_HEADER).then((response) => {
-                console.log(response)
+                alert(response.data)
                 this.$swal('ثبت شد')
                 this.$swal(
                     'عالی بود!',
@@ -114,7 +114,7 @@ export default {
                     'success'
                 )
                 setTimeout(() => {
-                    location.replace('/panel/tours')
+                    // location.replace('/panel/tours')
                 }, 2000)
             }).catch((e) => {
                 this.$swal({

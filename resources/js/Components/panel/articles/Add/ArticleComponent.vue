@@ -127,28 +127,30 @@ export default {
             this.tourInfo.push(JSON.parse(JSON.stringify(value)))
         },
         quickStore() {
-            if (this.newArticleId == null) {
-                this.newArticleId = 0
-                axios.post('/panel/tours/quick/store', {
-                    type: this.currentType,
-                    category_id: this.category_id,
-                    data: this.childContentData[0],
-                }, constants.AXIOS_HEADER).then((response) => {
-                    this.newArticleId = response.data.id
-                }).catch((e) => {
-                    this.$swal({
-                        icon: 'error',
-                        title: 'اخطار...',
-                        text: e.response.data.message,
-                    })
-                })
-            }
+            console.log('OK')
+            // if (this.newArticleId == null) {
+            //     this.newArticleId = 0
+            //     axios.post('/panel/tours/quick/store', {
+            //         type: this.currentType,
+            //         category_id: this.category_id,
+            //         data: this.childContentData[0],
+            //     }, constants.AXIOS_HEADER).then((response) => {
+            //         this.newArticleId = response.data.id
+            //     }).catch((e) => {
+            //         this.$swal({
+            //             icon: 'error',
+            //             title: 'اخطار...',
+            //             text: e.response.data.message,
+            //         })
+            //     })
+            // }
         },
         storeArticle() {
             axios.put(`/panel/tours/update/${this.newArticleId}`, {
                 type: this.currentType,
                 category_id: this.category_id,
                 data: this.childContentData[0],
+                status : this.status
                 // book: this.childBookData[0],
             }, constants.AXIOS_HEADER).then((response) => {
                 this.$swal('ثبت شد')
