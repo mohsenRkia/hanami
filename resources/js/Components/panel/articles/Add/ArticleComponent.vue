@@ -57,7 +57,7 @@
             <UploadComponent v-show="newArticleId != null" :mediaable-id="newArticleId"/>
         </div>
         <template v-if="currentType === 'tour'">
-            <TourInfoComponent @tour-info-inputs="onChangedTourInfo"
+            <TourInfoComponent @tour-info-inputs="onChangedTourInfo" :article-type-movings = "articleTypeMovings"
                            :article-id="newArticleId"></TourInfoComponent>
         </template>
     </div>
@@ -77,7 +77,7 @@ import TourInfoComponent from "@/Components/panel/articles/Add/detailes/TourInfo
 
 export default {
     name: "ArticleComponent",
-    props: ['articleTypes', 'articleCategories'],
+    props: ['articleTypes', 'articleCategories','articleTypeMovings'],
     components: {
         TourInfoComponent,
         ContentComponent,

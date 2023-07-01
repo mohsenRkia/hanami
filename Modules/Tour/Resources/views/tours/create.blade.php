@@ -14,6 +14,7 @@
                 <article-main-component
                     :article-categories = "{{json_encode($categories)}}"
                     :article-types= "{{json_encode($articleTypes)}}"
+                    :article-type-movings= "{{json_encode($typeMovings)}}"
                 ></article-main-component>
             </div>
         </div><!-- end form-box -->

@@ -9,13 +9,15 @@ use Modules\Article\Entities\Article;
 use Modules\Article\Services\ArticleTypeServices;
 use Modules\Category\Services\CategoryServices;
 use Modules\Tour\Services\TourServices;
+use Modules\Tour\Services\TypeMovingServices;
 
 class TourController extends Controller
 {
     public function __construct(
         private TourServices $tourServices,
         private CategoryServices $categoryServices,
-        private ArticleTypeServices $articleTypeServices
+        private ArticleTypeServices $articleTypeServices,
+        private TypeMovingServices $typeMovingServices
     ){}
 
     /**
@@ -36,8 +38,9 @@ class TourController extends Controller
     {
         $categories = $this->categoryServices->all();
         $articleTypes = $this->articleTypeServices->all();
+        $typeMovings = $this->typeMovingServices->all();
 
-        return view('tour::tours.create',compact('categories','articleTypes'));
+        return view('tour::tours.create',compact('categories','articleTypes','typeMovings'));
     }
     public function quickStoreTour(Request $request)
     {
