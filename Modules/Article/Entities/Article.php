@@ -4,6 +4,7 @@ namespace Modules\Article\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Tour\Entities\TourMainDetail;
 
 class Article extends Model
 {
@@ -16,6 +17,11 @@ class Article extends Model
         'type',
         'status'
     ];
+
+    public function tour_main_detail()
+    {
+        return $this->hasOne(TourMainDetail::class,'article_id');
+    }
 
     protected static function newFactory()
     {

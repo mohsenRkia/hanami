@@ -3,6 +3,7 @@
 namespace Modules\Tour\Services;
 
 use Modules\Article\Entities\Article;
+use Modules\Tour\Entities\TourMainDetail;
 
 class TourServices
 {
@@ -38,6 +39,17 @@ class TourServices
             'type' => $request->type,
             'status' => $request->status
         ]);
+
+//        if ($article->tour_main_detail())
+        $main_detail = new TourMainDetail();
+        $main_detail->article_id = $id;
+        $main_detail->start_day = $request->tour_info['start_date'];
+        $main_detail->end_day = $request->tour_info['end_date'];
+        $main_detail->type_moving_id = $request->tour_info['selectedTypeMoving'];
+        $main_detail->tour_period = $request->tour_info['tour_period'];
+        $main_detail->save();
+
+
 
         return $article;
     }
