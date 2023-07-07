@@ -54,10 +54,13 @@
         <div class="row">
             <UploadComponent :mediaable-id="article.id"/>
         </div>
-        <template v-if="currentType == 'tour'">
-            TOOOOUUUUR
-<!--            <BookComponent @book-inputs="onChangedBook" :agegroups="articleAgegroups"-->
-<!--                           :article-id="newArticleId"></BookComponent>-->
+        <template v-if="currentType === 'tour'">
+            <TourInfoEditComponent
+                @tour-info-inputs="onChangedTourInfo"
+                :article-type-movings = "articleTypeMovings"
+                :article-id="article.id"
+                :tour-info = "tourInfo"
+            ></TourInfoEditComponent>
         </template>
     </div>
     <div class="col-lg-12">
@@ -73,11 +76,13 @@ import constants from "@/constants.js";
 import ContentComponent from "@/Components/panel/articles/Edit/ContentEditComponent.vue";
 import HEADER from "@/constants.js";
 import UploadComponent from "@/components/Uploader/UploadComponent.vue";
+import TourInfoEditComponent from "@/Components/panel/articles/Edit/detailes/TourInfoEditComponent.vue";
 
 export default {
     name: "ArticleEditComponent",
-    props: ['articleTypes', 'articleCategories','article'],
+    props: ['articleTypes', 'articleCategories','article','articleTypeMovings'],
     components: {
+        TourInfoEditComponent,
         ContentComponent,
         UploadComponent,
     },
@@ -88,6 +93,7 @@ export default {
             childImageData: [],
             category_id: this.article.category_id,
             status: this.article.status,
+            tourInfo : this.article.tour_main_detail ? this.article.tour_main_detail : []
         }
     },
     watch: {
@@ -98,6 +104,10 @@ export default {
             this.childContentData = []
             this.childContentData.push(JSON.parse(JSON.stringify(value)))
         },
+        onChangedTourInfo(value) {
+            this.tourInfo = []
+            this.tourInfo.push(JSON.parse(JSON.stringify(value)))
+        },
         updateArticle() {
             axios.put(`/panel/tours/update/${this.article.id}`, {
                 type: this.currentType,
@@ -106,7 +116,7 @@ export default {
                 data: this.childContentData[0],
                 // book: this.childBookData[0],
             }, constants.AXIOS_HEADER).then((response) => {
-                alert(response.data)
+                console.log(response.data)
                 this.$swal('ثبت شد')
                 this.$swal(
                     'عالی بود!',

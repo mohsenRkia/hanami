@@ -113,34 +113,43 @@
 import constants from "@/constants.js";
 
 export default {
-    name: "TourInfoComponent",
-    props: ['articleId','articleTypeMovings'],
+    name: "TourInfoEditComponent",
+    props: ['articleId','articleTypeMovings','tourInfo'],
     data() {
         return {
             data : {
                 years: constants.YEARS,
                 months: constants.MONTH,
-                days: constants.DAYS,
+                days: constants.DAYS
             },
             detail:
                 {
-                    // start_date : '',
-                    // end_date : '',
+                    // start_date : this.tourInfo.start_day,
+                    // end_date : this.tourInfo.end_day,
                     start_year: 0,
                     start_month: 0,
                     start_day: 0,
                     end_year: 0,
                     end_month: 0,
                     end_day: 0,
-                    selectedTypeMoving : 0,
-                    tour_period : 0,
+                    selectedTypeMoving : this.tourInfo.type_moving_id,
+                    tour_period : this.tourInfo.tour_period,
                 }
         }
     },
     methods: {
+        setDateInputs(){
+            const explodedStartDate = this.tourInfo.start_day.split('-');
+            this.detail.start_year = explodedStartDate[0]
+            this.detail.start_month = explodedStartDate[1]
+            this.detail.start_day = explodedStartDate[2]
+        }
         // onChangedDetail(value) {
         //     this.bookData.agegroup_id = JSON.parse(JSON.stringify(value))
         // },
+    },
+    created() {
+        this.setDateInputs();
     },
     watch: {
         detail: {
@@ -149,6 +158,13 @@ export default {
             },
             deep: true
         }
+        // data:{
+        //     handler(val) {
+        //         this.detail.start_date = [this.data.start_year,this.data.start_month,this.data.start_day].join('/')
+        //         this.detail.end_date = [this.data.end_year,this.data.end_month,this.data.end_day].join('/')
+        //     },
+        //     deep: true
+        // }
     }
 }
 </script>
