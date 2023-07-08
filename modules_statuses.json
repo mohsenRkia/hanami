@@ -7,5 +7,6 @@
     "Articles": true,
     "Tour": true,
     "Uploader": true,
-    "Slider": true
+    "Slider": true,
+    "Information": true
 }
