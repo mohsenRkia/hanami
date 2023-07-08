@@ -5,5 +5,7 @@
     "Role": true,
     "Loction": true,
     "Articles": true,
-    "Tour": true
+    "Tour": true,
+    "Uploader": true,
+    "Slider": true
 }

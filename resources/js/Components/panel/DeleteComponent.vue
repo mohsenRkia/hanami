@@ -22,22 +22,41 @@ export default {
                 cancelButtonText: 'لغو'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(`/panel/${this.postModule}/${this.postType}/${this.itemId}`)
-                        .then((res) => {
-                                if (res.data == true){
-                                    this.$swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'آیتم با موفقیت حذف شد.',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-                                    setTimeout(() => {
-                                        location.reload()
-                                    },2000)
+                    if (this.postModule === undefined){
+                        axios.delete(`/panel/${this.postType}/${this.itemId}`)
+                            .then((res) => {
+                                    if (res.data == true){
+                                        this.$swal.fire({
+                                            position: 'center',
+                                            icon: 'success',
+                                            title: 'آیتم با موفقیت حذف شد.',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                        setTimeout(() => {
+                                            location.reload()
+                                        },2000)
+                                    }
                                 }
-                            }
-                        )
+                            )
+                    }else {
+                        axios.delete(`/panel/${this.postModule}/${this.postType}/${this.itemId}`)
+                            .then((res) => {
+                                    if (res.data == true){
+                                        this.$swal.fire({
+                                            position: 'center',
+                                            icon: 'success',
+                                            title: 'آیتم با موفقیت حذف شد.',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                        setTimeout(() => {
+                                            location.reload()
+                                        },2000)
+                                    }
+                                }
+                            )
+                    }
                 }
             })
         }

@@ -18,6 +18,7 @@
             <ul class="sidebar-menu toggle-menu list-items">
 
                 <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>داشبرد</a></li>
+                <li><a href="{{route('sliders.index')}}"><i class="la la-sliders mr-2 text-color-4"></i>اسلایدرها</a></li>
                 <li><a href="admin-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color"></i>رزرو</a></li>
                 <li>
                     <span class="side-menu-icon toggle-menu-icon">

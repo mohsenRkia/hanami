@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPanelController;
-use App\Http\Controllers\admim\AdminContactUsController;
+use App\Http\Controllers\admin\AdminContactUsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +15,7 @@ use App\Http\Controllers\admim\AdminContactUsController;
 */
 
 Route::get('/dashboard', [AdminPanelController::class, 'dashboard'])->name('dashboard');
-
 Route::get('/contactUs', [AdminContactUsController::class, 'contactUs'])->name('contactUs');
+
+
 
