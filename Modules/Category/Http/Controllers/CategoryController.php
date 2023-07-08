@@ -5,6 +5,7 @@ namespace Modules\Category\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Category\Http\Requests\StoreCategoryRequest;
 use Modules\Category\Services\CategoryServices;
 
 class CategoryController extends Controller
@@ -19,9 +20,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryServices->all();
-        dd($categories->toArray());
-        return view('category::index');
+        $categories = $this->categoryServices->allWithPaginate(5);
+        $categoriesCount = $this->categoryServices->allCount();
+        return view('category::index',compact('categories','categoriesCount' ));
     }
 
     /**
@@ -30,7 +31,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category::create');
+        $categories = $this->categoryServices->all();
+        return view('category::create',compact('categories'));
+
     }
 
     /**
@@ -38,9 +41,10 @@ class CategoryController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        $category = $this->categoryServices->store($request);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -60,7 +64,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('category::edit');
+        $category = $this->categoryServices->find($id);
+        return view('category::edit',compact('category' ));
     }
 
     /**
@@ -69,9 +74,10 @@ class CategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategoryRequest $request, $id)
     {
-        //
+        $this->categoryServices->update($request,$id);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -81,6 +87,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = $this->categoryServices->destroy($id);
+        return response()->json($delete);
     }
 }

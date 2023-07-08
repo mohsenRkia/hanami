@@ -1,7 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
+use Modules\Category\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,11 +11,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Added By Mohsen
-Route::prefix('panel')
-    ->group(function () {
-        Route::prefix('category')
-            ->group(function () {
-                Route::get('/', 'CategoryController@index');
-            });
+
+Route::prefix('panel')->group(function() {
+    Route::prefix('/category')->group(function() {
+        Route::resource('/categories', CategoryController::class);
     });
+});
