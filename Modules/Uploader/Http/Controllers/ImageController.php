@@ -18,15 +18,14 @@ class ImageController extends Controller
     {
     }
 
-    public function initiate($id, $module, $model, $type)
+    public function initiate($module, $model, $type,$id)
     {
-        return $module;
-        return $this->imageServices->initiate($id, $module, $model, $type);
+        return $this->imageServices->initiate($module, $model, $type,$id);
     }
 
-    public function detachImageFromMedia($id, $module, $model, $type)
+    public function detachImageFromMedia($module, $model, $type,$id)
     {
-        return $this->imageServices->detach($id, $module, $model, $type);
+        return $this->imageServices->detach($module, $model, $type,$id);
     }
 
     public function uploadImage(Request $r, $module = 'App', $model, $type, $id)

@@ -30,7 +30,7 @@
                                         </span>
                     </label>
                     <button type="submit" class="btn btn-default btn-sm float-left col-2"><i
-                        class="fa fa-cloud-upload"></i></button>
+                        class="la la-cloud-upload text-info" style="font-size: 30px"></i></button>
                 </div>
             </form>
             <UploadSucceededComponent

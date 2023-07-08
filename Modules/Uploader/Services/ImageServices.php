@@ -13,14 +13,14 @@ class ImageServices
     {
     }
 
-    public function initiate($id,$module,$model,$type)
+    public function initiate($module,$model,$type,$id)
     {
         $model = $this->getModel($module,$model);
         $model = $model::find($id);
         return $model->getMedia($type)->first() ? $model->getMedia($type)->first()->findVariant('thumb')->getUrl() : null;
     }
 
-    public function detach($id,$module,$model,$type)
+    public function detach($module,$model,$type,$id)
     {
         $type = Str::ucfirst($type);
         $model = $this->getModel($module, $model);
@@ -34,7 +34,7 @@ class ImageServices
 
         return $media;
     }
-    public function upload($r, $module, $model, $type, $id)
+    public function upload($module, $model, $type, $id,$r)
     {
         $type = Str::ucfirst($type);
         $model = $this->getModel($module, $model);

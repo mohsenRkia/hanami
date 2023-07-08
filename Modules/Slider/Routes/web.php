@@ -1,5 +1,6 @@
 <?php
 use Modules\Slider\Http\Controllers\SliderController;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
