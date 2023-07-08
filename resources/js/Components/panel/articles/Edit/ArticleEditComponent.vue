@@ -114,6 +114,7 @@ export default {
                 status : this.status,
                 category_id: this.category_id,
                 data: this.childContentData[0],
+                tour_info : this.tourInfo[0]
                 // book: this.childBookData[0],
             }, constants.AXIOS_HEADER).then((response) => {
                 console.log(response.data)

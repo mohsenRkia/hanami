@@ -139,10 +139,13 @@ export default {
     },
     methods: {
         setDateInputs(){
-            const explodedStartDate = this.tourInfo.start_day.split('-');
-            this.detail.start_year = explodedStartDate[0]
-            this.detail.start_month = explodedStartDate[1]
-            this.detail.start_day = explodedStartDate[2]
+            this.detail.start_year = this.tourInfo.start_day.year
+            this.detail.start_month = this.tourInfo.start_day.month
+            this.detail.start_day = this.tourInfo.start_day.day
+
+            this.detail.end_year = this.tourInfo.end_day.year
+            this.detail.end_month = this.tourInfo.end_day.month
+            this.detail.end_day = this.tourInfo.end_day.day
         }
         // onChangedDetail(value) {
         //     this.bookData.agegroup_id = JSON.parse(JSON.stringify(value))

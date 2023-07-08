@@ -6,7 +6,7 @@
                 <label class="label-text">عنوان</label>
                 <div class="form-group">
                     <span class="la la-pencil form-icon"></span>
-                    <input class="form-control" type="text" v-model="contentData.name"
+                    <input class="form-control" type="text" v-model="contentData.title"
                            placeholder="عنوان موضوع">
                 </div>
             </div>
@@ -39,14 +39,14 @@ export default {
     data() {
         return {
             contentData: {
-                name: this.article.title,
+                title: this.article.title,
                 description : this.article.description
             }
         }
     },
     methods: {
         onChangedName(text) {
-            this.contentData.name = JSON.parse(JSON.stringify(text))
+            this.contentData.title = JSON.parse(JSON.stringify(text))
         },
         onChangedDescriptionEn(text) {
             this.contentData.description = JSON.parse(JSON.stringify(text))

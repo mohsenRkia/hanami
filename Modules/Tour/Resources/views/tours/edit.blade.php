@@ -16,7 +16,6 @@
                     :article-categories = "{{json_encode($categories)}}"
                     :article-types= "{{json_encode($articleTypes)}}"
                     :article-type-movings= "{{json_encode($typeMovings)}}"
-                    :tour-info = "{{json_encode($tourInfo)}}"
                 ></article-edit-main-component>
             </div>
         </div><!-- end form-box -->

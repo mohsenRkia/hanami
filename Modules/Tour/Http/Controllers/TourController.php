@@ -68,8 +68,8 @@ class TourController extends Controller
         $articleTypes = $this->articleTypeServices->all();
         $typeMovings = $this->typeMovingServices->all();
         $tour = $this->tourServices->findTourWithRelations($id);
-        $tourInfo = '';
-        return view('tour::tours.edit', compact('tour','categories','articleTypes','tourInfo','typeMovings'));
+//        dd($tour->toArray());
+        return view('tour::tours.edit', compact('tour','categories','articleTypes','typeMovings'));
     }
 
     /**
