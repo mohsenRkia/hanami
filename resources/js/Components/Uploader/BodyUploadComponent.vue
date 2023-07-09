@@ -3,25 +3,25 @@
         <h3 class="card-title">افزودن {{ componentTitle }}</h3>
         <!-- /.card-header -->
         <div class="card-header bg-transparent">
-            <template v-if="componentType == 'image'">
+            <template v-if="type == 'image'">
                 <ShowUploadedImageComponent
                     :image="image"
                     @on-remove-image="removeImage"
                 />
             </template>
-            <template v-if="componentType == 'video'">
+            <template v-if="type == 'video'">
                 <ShowUploadedVideoComponent
                     :image="image"
                     @on-remove-image="removeImage"
                 />
             </template>
-            <template v-if="componentType == 'audio'">
+            <template v-if="type == 'audio'">
                 <ShowUploadedAudioComponent
                     :file="mediaUploaded[0]"
                     @on-remove-audio="removeAudio"
                 />
             </template>
-            <template v-if="componentType == 'document'">
+            <template v-if="type == 'document'">
                 <ShowUploadedDocumentComponent
                     :file="image"
                     @on-remove-document="removeImage"
@@ -48,7 +48,7 @@
                                         </span>
                     </label>
                     <button type="submit" class="btn btn-default btn-sm float-left col-2"><i
-                        class="fa fa-cloud-upload"></i></button>
+                        class="la la-cloud-upload text-info" style="font-size: 30px"></i></button>
                 </div>
             </form>
             <UploadSucceededComponent
@@ -77,7 +77,7 @@ export default {
         ShowUploadedDocumentComponent,
         ShowUploadedAudioComponent,
         ShowUploadedVideoComponent, ShowUploadedImageComponent, UploadErrorsComponent, UploadSucceededComponent},
-    props: ['componentTitle', 'componentType', 'oldImage', 'mediaableId'],
+    props: ['module','model','type','componentTitle', 'oldImage', 'mediaableId'],
     data: function () {
         return {
             fileChoosed: [],
@@ -96,7 +96,7 @@ export default {
             this.uploading = true;
             let formData = new FormData();
             formData.append('file', this.fileChoosed[0]);
-            axios.post(`/panel/${ this.componentType }/upload/${this.mediaableId}`, formData, {
+            axios.post(`/panel/uploader/images/upload/${this.module}/${this.model}/${this.type}/${this.mediaableId}`, formData, {
                 onUploadProgress: e => {
                     if (e.lengthComputable) {
                         this.progress = Math.round((e.loaded / e.total) * 100) + '%';
@@ -127,7 +127,7 @@ export default {
         //Getting List Of Images
         gettingListOfImages: function () {
             this.image = ''
-            axios.get(`/panel/${this.componentType}/initiate/${this.mediaableId}`)
+            axios.get(`/panel/uploader/images/initiate/${this.module}/${this.model}/${this.type}/${this.mediaableId}`)
                 .then(res => {
                     this.image = res.data
                 })
@@ -136,7 +136,7 @@ export default {
         },
         gettingListOfAudios: function () {
             this.image = ''
-            axios.get(`/panel/${this.componentType}/initiate/${this.mediaableId}`)
+            axios.get(`/panel/${this.type}/initiate/${this.mediaableId}`)
                 .then(res => {
                     this.mediaUploaded.push(res.data)
                 })
@@ -145,7 +145,7 @@ export default {
         },
         removeAudio(id) {
             console.log(id)
-            axios.post(`/panel/${this.componentType}/delete/${this.mediaableId}}/${id}`)
+            axios.post(`/panel/${this.type}/delete/${this.mediaableId}}/${id}`)
                 .then(() => {
                     this.image = ''
                     this.fileChoosed = []
@@ -156,7 +156,7 @@ export default {
         },
         removeImage(e) {
             e.preventDefault()
-            axios.post(`/panel/${this.componentType}/delete/${this.mediaableId}}`)
+            axios.post(`/panel/uploader/images/delete/${this.module}/${this.model}/${this.type}/${this.mediaableId}`)
                 .then(() => {
                     this.image = ''
                     this.fileChoosed = []

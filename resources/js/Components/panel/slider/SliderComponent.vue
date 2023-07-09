@@ -1,26 +1,27 @@
 <template>
     <div class="py-5">
-        <UploadSliderComponent
+        <upload-component
             :mediaable-id="slider.id"
             @image-event="onChangedImage"
             :old-image="oldImage"
+            file-types="image"
         />
     </div>
 </template>
 
 <script>
-import UploadSliderComponent from "@/Components/UploaderSlider/UploadSliderComponent.vue";
+import UploadComponent from "@/Components/Uploader/UploadComponent.vue";
 
 export default {
     name: "SliderComponent",
-    props: ['slider','oldImage'],
-    components: {UploadSliderComponent},
-    data(){
+    props: ['slider', 'oldImage'],
+    components: {UploadComponent},
+    data() {
         return {
             image: []
         }
     },
-    methods:{
+    methods: {
         onChangedImage(value) {
             this.image = []
             Array.prototype.push.apply(this.image, JSON.parse(JSON.stringify(value)))

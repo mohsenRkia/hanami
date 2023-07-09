@@ -9,6 +9,24 @@
                     @on-remove-image="removeImage"
                 />
             </template>
+            <template v-if="componentType == 'video'">
+                <ShowUploadedVideoComponent
+                    :image="image"
+                    @on-remove-image="removeImage"
+                />
+            </template>
+            <template v-if="componentType == 'audio'">
+                <ShowUploadedAudioComponent
+                    :file="mediaUploaded[0]"
+                    @on-remove-audio="removeAudio"
+                />
+            </template>
+            <template v-if="componentType == 'document'">
+                <ShowUploadedDocumentComponent
+                    :file="image"
+                    @on-remove-document="removeImage"
+                />
+            </template>
         </div>
         <div class="card-body" style="display: block;">
             <form @submit.prevent="handleUploading">
@@ -30,7 +48,7 @@
                                         </span>
                     </label>
                     <button type="submit" class="btn btn-default btn-sm float-left col-2"><i
-                        class="la la-cloud-upload text-info" style="font-size: 30px"></i></button>
+                        class="fa fa-cloud-upload"></i></button>
                 </div>
             </form>
             <UploadSucceededComponent
@@ -49,16 +67,19 @@ import UploadSucceededComponent from "@/components/Uploader/SubComponents/Upload
 import UploadErrorsComponent from "@/components/Uploader/SubComponents/UploadErrorsComponent.vue";
 import ShowUploadedImageComponent from "@/components/Uploader/SubComponents/image/ShowUploadedImageComponent.vue";
 import ShowUploadedVideoComponent from "@/components/Uploader/SubComponents/Video/ShowUploadedVideoComponent.vue";
+import ShowUploadedAudioComponent from "@/components/Uploader/SubComponents/audio/ShowUploadedAudioComponent.vue";
+import ShowUploadedDocumentComponent
+    from "@/components/Uploader/SubComponents/document/ShowUploadedDocumentComponent.vue";
 
 export default {
-    name: "BodyUploadComponent",
-    components: {ShowUploadedVideoComponent, ShowUploadedImageComponent, UploadErrorsComponent, UploadSucceededComponent},
+    name: "BodyUploadComponentttt",
+    components: {
+        ShowUploadedDocumentComponent,
+        ShowUploadedAudioComponent,
+        ShowUploadedVideoComponent, ShowUploadedImageComponent, UploadErrorsComponent, UploadSucceededComponent},
     props: ['componentTitle', 'componentType', 'oldImage', 'mediaableId'],
     data: function () {
         return {
-            module : 'slider',
-            model : 'slider',
-            type : 'image',
             fileChoosed: [],
             uploading: false,
             progress: 0,
@@ -75,7 +96,7 @@ export default {
             this.uploading = true;
             let formData = new FormData();
             formData.append('file', this.fileChoosed[0]);
-            axios.post(`/panel/uploader/images/upload/${this.module}/${this.model}/${this.type}/${this.mediaableId}`, formData, {
+            axios.post(`/panel/${ this.componentType }/upload/${this.mediaableId}`, formData, {
                 onUploadProgress: e => {
                     if (e.lengthComputable) {
                         this.progress = Math.round((e.loaded / e.total) * 100) + '%';
@@ -87,6 +108,7 @@ export default {
                 }
             }).then((res) => {
                 this.errors = [];
+                this.mediaUploaded = []
                 this.mediaUploaded.push(res.data)
                 this.gettingListOfImages(this.mediaableId)
                 this.uploading = false;
@@ -105,16 +127,36 @@ export default {
         //Getting List Of Images
         gettingListOfImages: function () {
             this.image = ''
-            axios.get(`/panel/uploader/images/initiate/${this.module}/${this.model}/${this.type}/${this.mediaableId}`)
+            axios.get(`/panel/${this.componentType}/initiate/${this.mediaableId}`)
                 .then(res => {
                     this.image = res.data
                 })
 
             this.$forceUpdate()
         },
+        gettingListOfAudios: function () {
+            this.image = ''
+            axios.get(`/panel/${this.componentType}/initiate/${this.mediaableId}`)
+                .then(res => {
+                    this.mediaUploaded.push(res.data)
+                })
+
+            this.$forceUpdate()
+        },
+        removeAudio(id) {
+            console.log(id)
+            axios.post(`/panel/${this.componentType}/delete/${this.mediaableId}}/${id}`)
+                .then(() => {
+                    this.image = ''
+                    this.fileChoosed = []
+                    this.mediaUploaded = []
+                    this.gettingListOfAudios(this.mediaableId)
+                })
+            this.$forceUpdate()
+        },
         removeImage(e) {
             e.preventDefault()
-            axios.post(`/panel/uploader/images/delete/${this.module}/${this.model}/${this.type}/${this.mediaableId}`)
+            axios.post(`/panel/${this.componentType}/delete/${this.mediaableId}}`)
                 .then(() => {
                     this.image = ''
                     this.fileChoosed = []

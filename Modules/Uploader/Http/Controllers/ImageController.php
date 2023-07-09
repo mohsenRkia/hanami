@@ -30,7 +30,7 @@ class ImageController extends Controller
 
     public function uploadImage(Request $r, $module = 'App', $model, $type, $id)
     {
-        $media = $this->imageServices->upload($r, $module, $model, $type, $id);
+        $media = $this->imageServices->upload($module, $model, $type, $id,$r);
         return response()->json($media);
     }
 

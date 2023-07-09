@@ -63,7 +63,7 @@ class SliderController extends Controller
     {
         {
             $slider = $this->sliderServices->find($id);
-            $image = $slider->getMedia('Slider')->first() ? $slider->getMedia('Slider')->first()->findVariant('thumb')->getUrl() : null;
+            $image = $slider->getMedia('Image')->first() ? $slider->getMedia('Image')->first()->findVariant('thumb')->getUrl() : null;
             return view('slider::edit',compact('slider','image' ));
         }
     }

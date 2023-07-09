@@ -5,16 +5,18 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="m2-video-uploading-part col-md-6">
+                <div v-show="image_type" class="m2-video-uploading-part col-md-6">
                     <BodyUploadComponent
+                        module="slider"
+                        model="slider"
+                        type="image"
                         component-title="تصویر"
-                        component-type="image"
                         @image-event="imageEvent"
                         :mediaable-id="mediaableId"
                         :old-image="oldImage"
                     />
                 </div>
-                <div class="m2-video-uploading-part col-md-6">
+                <div v-show="video_type" class="m2-video-uploading-part col-md-6">
                     <BodyUploadComponent
                         component-title="ویدیو"
                         component-type="video"
@@ -23,7 +25,7 @@
                         :old-image="oldVideo"
                     />
                 </div>
-                <div class="m2-video-uploading-part col-md-6">
+                <div v-show="audio_type" class="m2-video-uploading-part col-md-6">
                     <BodyUploadComponent
                         component-title="فایل صوتی"
                         component-type="audio"
@@ -32,7 +34,7 @@
                         :old-image="oldAudio"
                     />
                 </div>
-                <div class="m2-video-uploading-part col-md-6">
+                <div v-show="document_type" class="m2-video-uploading-part col-md-6">
                     <BodyUploadComponent
                         component-title="فایل PDF"
                         component-type="document"
@@ -52,11 +54,33 @@
 
 <script>
 import VideoUploadComponent from "@/components/Uploader/VideoUploadComponent.vue";
-import BodyUploadComponent from "@/components/Uploader/BodyUploadComponent.vue";
+import BodyUploadComponent from "@/Components/Uploader/BodyUploadComponent.vue";
 
 export default {
     name: "UploadComponent",
     components: {BodyUploadComponent, VideoUploadComponent},
-    props: ['imageEvent','mediaableId','oldImage','oldVideo','videoEvent','oldAudio','audioEvent','oldDocument','documentEvent'],
+    props: ['imageEvent','mediaableId','oldImage','oldVideo','videoEvent','oldAudio','audioEvent','oldDocument','documentEvent','fileTypes'],
+    data(){
+        return {
+            image_type : false,
+            audio_type : false,
+            video_type : false,
+            document_type : false,
+        }
+    },
+    created() {
+        this.checkFileTypes()
+    },
+    methods:{
+        checkFileTypes(){
+            const types = this.fileTypes.split(',')
+            if (types.includes("image")) this.image_type = true
+            if (types.includes("audio")) this.audio_type = true
+            if (types.includes("video")) this.video_type = true
+            if (types.includes("document")) this.document_type = true
+
+
+        }
+    }
 }
 </script>

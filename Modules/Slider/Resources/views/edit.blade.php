@@ -35,7 +35,7 @@
                                     <slider-component
                                         :slider="{{$slider}}"
                                         :old-image="{{json_encode($image)}}"
-                                    />
+                                    ></slider-component>
                                 </div>
                             </div>
                             <div class="row col-md-4">
