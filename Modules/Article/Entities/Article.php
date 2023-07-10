@@ -20,7 +20,7 @@ class Article extends Model
 
     public function tour_main_detail()
     {
-        return $this->hasOne(TourMainDetail::class,'article_id');
+        return $this->hasOne(TourMainDetail::class);
     }
 
     protected static function newFactory()

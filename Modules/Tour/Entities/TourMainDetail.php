@@ -4,6 +4,7 @@ namespace Modules\Tour\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Morilog\Jalali\CalendarUtils;
 use Morilog\Jalali\Jalalian;
 
 class TourMainDetail extends Model
@@ -15,13 +16,15 @@ class TourMainDetail extends Model
 
     public function getStartDayAttribute($value)
     {
-        $JalaliDate = Jalalian::fromFormat('Y-m-d',$value);
-        return $JalaliDate->toArray();
+        $exploded = explode('-',$value);
+        $JalaliDate = CalendarUtils::toJalali($exploded[0],$exploded[1],$exploded[2]);
+        return $JalaliDate;
     }
     public function getEndDayAttribute($value)
     {
-        $JalaliDate = Jalalian::fromFormat('Y-m-d',$value);
-        return $JalaliDate->toArray();
+        $exploded = explode('-',$value);
+        $JalaliDate = CalendarUtils::toJalali($exploded[0],$exploded[1],$exploded[2]);
+        return $JalaliDate;
     }
     protected static function newFactory()
     {

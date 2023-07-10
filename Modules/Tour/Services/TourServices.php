@@ -46,23 +46,23 @@ class TourServices
         $article->type = $request->type;
         $article->status = $request->status;
 
-        return $article;
-//        if ($article->tour_main_detail())
-
         $startDate = ShamsiToMiladi($request->tour_info['start_year'], $request->tour_info['start_month'], $request->tour_info['start_day']);
         $endDate = ShamsiToMiladi($request->tour_info['end_year'], $request->tour_info['end_month'], $request->tour_info['end_day']);
 
-        $main_detail = new TourMainDetail();
-        $main_detail->article_id = $id;
+        if (!$article->tour_main_detail()->exists()){
+            $main_detail = new TourMainDetail();
+            $main_detail->article_id = $id;
+        }else{
+            $main_detail = TourMainDetail::where('article_id',$id)->first();
+        }
         $main_detail->start_day = $startDate;
         $main_detail->end_day = $endDate;
         $main_detail->type_moving_id = $request->tour_info['selectedTypeMoving'];
         $main_detail->tour_period = $request->tour_info['tour_period'];
         $main_detail->save();
-
         $article->save();
 
-        return $article->tour_main_detail();
+        return $article;
     }
 
     public function findTour($id)
