@@ -1,6 +1,11 @@
 <template>
     <template v-if="image">
-        <button class="btn btn-transparent"><img :src="image" @click="clicked($event)" width="100"></button>
+        <img :src="image"  width="100">
+        <button class="btn btn-transparent">
+            <div class="theme-btn theme-btn border-danger bg-danger text-white delete_article_ajax">
+                <i class="la la-trash" @click="clicked($event)"></i>
+            </div>
+        </button>
     </template>
 </template>
 

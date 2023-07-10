@@ -7,8 +7,8 @@
             <div class="row">
                 <div v-show="image_type" class="m2-video-uploading-part col-md-6">
                     <BodyUploadComponent
-                        module="slider"
-                        model="slider"
+                        :module="module"
+                        :model="model"
                         type="image"
                         component-title="تصویر"
                         @image-event="imageEvent"
@@ -23,6 +23,7 @@
                         @video-event="videoEvent"
                         :mediaable-id="mediaableId"
                         :old-image="oldVideo"
+                        type="video"
                     />
                 </div>
                 <div v-show="audio_type" class="m2-video-uploading-part col-md-6">
@@ -32,6 +33,7 @@
                         @audio-event="audioEvent"
                         :mediaable-id="mediaableId"
                         :old-image="oldAudio"
+                        type="audio"
                     />
                 </div>
                 <div v-show="document_type" class="m2-video-uploading-part col-md-6">
@@ -41,6 +43,7 @@
                         @document-event="documentEvent"
                         :mediaable-id="mediaableId"
                         :old-image="oldDocument"
+                        type="document"
                     />
                 </div>
 
@@ -59,7 +62,7 @@ import BodyUploadComponent from "@/Components/Uploader/BodyUploadComponent.vue";
 export default {
     name: "UploadComponent",
     components: {BodyUploadComponent, VideoUploadComponent},
-    props: ['imageEvent','mediaableId','oldImage','oldVideo','videoEvent','oldAudio','audioEvent','oldDocument','documentEvent','fileTypes'],
+    props: ['imageEvent','mediaableId','oldImage','oldVideo','videoEvent','oldAudio','audioEvent','oldDocument','documentEvent','fileTypes','module','model'],
     data(){
         return {
             image_type : false,

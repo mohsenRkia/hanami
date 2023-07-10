@@ -129,6 +129,7 @@ export default {
             this.image = ''
             axios.get(`/panel/uploader/images/initiate/${this.module}/${this.model}/${this.type}/${this.mediaableId}`)
                 .then(res => {
+                    console.log(res.data)
                     this.image = res.data
                 })
 

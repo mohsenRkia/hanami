@@ -1,6 +1,8 @@
 <template>
     <div class="py-5">
         <upload-component
+            module="slider"
+            model="slider"
             :mediaable-id="slider.id"
             @image-event="onChangedImage"
             :old-image="oldImage"

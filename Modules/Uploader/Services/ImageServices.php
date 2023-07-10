@@ -15,8 +15,8 @@ class ImageServices
 
     public function initiate($module,$model,$type,$id)
     {
+        $type = Str::ucfirst($type);
         $model = $this->getModel($module,$model);
-        return $model;
         $model = $model::find($id);
         return $model->getMedia($type)->first() ? $model->getMedia($type)->first()->findVariant('thumb')->getUrl() : null;
     }
@@ -62,7 +62,7 @@ class ImageServices
 
 
         $media = MediaUploader::fromSource($r->file('file'))
-            ->toDestination('public','uploads/images/' . date('Y') . '/' . date('m'))
+            ->toDestination('uploads','/images/' . date('Y') . '/' . date('m'))
             ->onDuplicateIncrement()
             ->upload();
 

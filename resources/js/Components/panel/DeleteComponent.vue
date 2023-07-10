@@ -1,7 +1,7 @@
 <template>
     <a @click="deleteItem"
        class="theme-btn theme-btn-small border-danger bg-danger text-white delete_article_ajax" data-toggle="tooltip" data-placement="top" title="حذف">
-        <i class="la la-times"></i>
+        <i class="la la-trash"></i>
     </a>
 </template>
 
