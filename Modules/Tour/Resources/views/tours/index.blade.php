@@ -9,7 +9,8 @@
         <div class="form-box">
             <div class="form-title-wrap">
                 <h3 class="title">لیست تور ها</h3>
-                <a href="{{route('panel.tours.create')}}" type="button" class="btn btn-outline-primary btn-lg d-inline-flex float-left mt-n3">ایجاد تور جدید</a>
+                <a href="{{route('panel.tours.create')}}" type="button"
+                   class="btn btn-outline-primary btn-lg d-inline-flex float-left mt-n3">ایجاد تور جدید</a>
             </div>
             <div class="form-content">
                 <div class="table-form table-responsive">
@@ -31,13 +32,22 @@
                                         <h3 class="title">{{$tour->title}}</h3>
                                     </div>
                                 </td>
-                                <td><span class="badge badge-danger py-1 px-2">غير فعال</span><span
-                                        class="badge badge-success py-1 px-2">فعال</span></td>
+                                <td>
+                                    @switch($tour->status)
+                                        @case(0)
+                                            <span class="badge badge-danger py-1 px-2">غير فعال</span>
+                                        @break
+                                        @case(1)
+                                            <span class="badge badge-success py-1 px-2">فعال</span></td>
+                                        @break
+                                    @endswitch
                                 <td>
                                     <div class="table-content">
-                                        <a href="#" class="theme-btn theme-btn-small" data-toggle="tooltip"
+                                        <a href="{{route('panel.tours.edit' , ['id' => $tour->id])}}"
+                                           class="theme-btn theme-btn-small" data-toggle="tooltip"
                                            data-placement="top" title="ویرایش"><i class="la la-edit"></i></a>
-                                        <delete-component item-id="{{$tour->id}}" post-type="tours" post-module="tour"></delete-component>
+                                        <delete-component item-id="{{$tour->id}}" post-type="tours"
+                                                          post-module="tour"></delete-component>
 
                                     </div>
                                 </td>

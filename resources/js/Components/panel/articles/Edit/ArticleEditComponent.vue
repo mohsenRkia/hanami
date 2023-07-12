@@ -4,8 +4,8 @@
             <div class="col-8">
                 <ContentComponent
                     @content-data="onChangedContent"
-                    :categories={articleCategories}
-                    :article-id="newArticleId"
+                    :article-id="article.id"
+                    :article="article"
                 ></ContentComponent>
             </div>
             <div class="col-4">
@@ -15,7 +15,6 @@
                         <span class="text-danger">*</span>
                         <label class="label-text">دسته بندی</label>
                         <select v-model="category_id" class="form-control select2" id="article_category" name="area_id">
-                            <option value="0">انتخاب کنید</option>
                             <option v-for="category in articleCategories" :value="category.id">
                                 {{ category.name }}
                             </option>
@@ -28,7 +27,6 @@
                         <span class="text-danger">*</span>
                         <label class="label-text">نوع پست</label>
                         <select v-model="currentType" class="form-control select2" id="article_type" name="area_id">
-                            <option value="notype">انتخاب کنید</option>
                             <option v-for="type in articleTypes" :value="type.slug">
                                 {{ type.name }}
                             </option>
@@ -53,17 +51,21 @@
                 </div>
             </div>
         </div>
-        <div v-if="newArticleId > 0" class="row">
-            <UploadComponent v-show="newArticleId != null" :mediaable-id="newArticleId"/>
+        <div class="row">
+            <UploadComponent :mediaable-id="article.id"/>
         </div>
         <template v-if="currentType === 'tour'">
-            <TourInfoComponent @tour-info-inputs="onChangedTourInfo" :article-type-movings = "articleTypeMovings"
-                           :article-id="newArticleId"></TourInfoComponent>
+            <TourInfoEditComponent
+                @tour-info-inputs="onChangedTourInfo"
+                :article-type-movings = "articleTypeMovings"
+                :article-id="article.id"
+                :tour-info = "tourInfo"
+            ></TourInfoEditComponent>
         </template>
     </div>
     <div class="col-lg-12">
         <div class="btn-box">
-            <button class="theme-btn" type="submit" @click="storeArticle">ذخیره تغییرات</button>
+            <button class="theme-btn" type="submit" @click="updateArticle">ذخیره تغییرات</button>
         </div>
     </div>
     <!-- end col-lg-12 -->
@@ -71,51 +73,31 @@
 
 <script>
 import constants from "@/constants.js";
-import ContentComponent from "@/Components/panel/articles/Add/ContentComponent.vue";
+import ContentComponent from "@/Components/panel/articles/Edit/ContentEditComponent.vue";
+import HEADER from "@/constants.js";
 import UploadComponent from "@/components/Uploader/UploadComponent.vue";
-import TourInfoComponent from "@/Components/panel/articles/Add/detailes/TourInfoComponent.vue";
+import TourInfoEditComponent from "@/Components/panel/articles/Edit/detailes/TourInfoEditComponent.vue";
 
 export default {
-    name: "ArticleComponent",
-    props: ['articleTypes', 'articleCategories','articleTypeMovings'],
+    name: "ArticleEditComponent",
+    props: ['articleTypes', 'articleCategories','article','articleTypeMovings'],
     components: {
-        TourInfoComponent,
+        TourInfoEditComponent,
         ContentComponent,
         UploadComponent,
     },
     data() {
         return {
-            newArticleId: null,
-            childContentData: [{
-                name: 'No Name',
-                description: 'No Description'
-            }],
-            currentType: 'notype',
+            childContentData: [this.article],
+            currentType: this.article.type,
             childImageData: [],
-            category_id: 0,
-            status: null,
-            tourInfo : []
+            category_id: this.article.category_id,
+            status: this.article.status,
+            tourInfo : this.article.tour_main_detail ? this.article.tour_main_detail : []
         }
     },
     watch: {
-        childContentData: {
-            handler: function () {
-                this.quickStore();
-            },
-            deep: true
-        },
-        category_id: {
-            handler: function () {
-                this.quickStore();
-            },
-            deep: true
-        },
-        currentType: {
-            handler: function () {
-                this.quickStore();
-            },
-            deep: true
-        }
+
     },
     methods: {
         onChangedContent(value) {
@@ -126,31 +108,12 @@ export default {
             this.tourInfo = []
             this.tourInfo.push(JSON.parse(JSON.stringify(value)))
         },
-        quickStore() {
-            console.log('OK')
-            // if (this.newArticleId == null) {
-            //     this.newArticleId = 0
-            //     axios.post('/panel/tours/quick/store', {
-            //         type: this.currentType,
-            //         category_id: this.category_id,
-            //         data: this.childContentData[0],
-            //     }, constants.AXIOS_HEADER).then((response) => {
-            //         this.newArticleId = response.data.id
-            //     }).catch((e) => {
-            //         this.$swal({
-            //             icon: 'error',
-            //             title: 'اخطار...',
-            //             text: e.response.data.message,
-            //         })
-            //     })
-            // }
-        },
-        storeArticle() {
-            axios.put(`/panel/tours/update/${this.newArticleId}`, {
+        updateArticle() {
+            axios.put(`/panel/tours/update/${this.article.id}`, {
                 type: this.currentType,
+                status : this.status,
                 category_id: this.category_id,
                 data: this.childContentData[0],
-                status : this.status,
                 tour_info : this.tourInfo[0]
                 // book: this.childBookData[0],
             }, constants.AXIOS_HEADER).then((response) => {

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tour_main_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('article_id');
             $table->date('start_day')->nullable();
             $table->date('end_day')->nullable();
             $table->unsignedInteger('type_moving_id');
