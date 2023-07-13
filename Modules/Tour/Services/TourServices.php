@@ -25,7 +25,7 @@ class TourServices
     {
         $data = (object)$request->data;
         $article = $this->article->create([
-            'title' => $data->name,
+            'title' => $data->title,
             'description' => $data->description,
             'category_id' => $request->category_id,
             'type' => $request->type,
@@ -37,6 +37,7 @@ class TourServices
 
     public function updateTour($request, $id)
     {
+//        return $request->tour_info['start_year'];
         $data = (object)$request->data;
 
         $article = $this->article->find($id);

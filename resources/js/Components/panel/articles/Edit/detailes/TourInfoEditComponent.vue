@@ -124,16 +124,14 @@ export default {
             },
             detail:
                 {
-                    // start_date : this.tourInfo.start_day,
-                    // end_date : this.tourInfo.end_day,
-                    start_year: 0,
-                    start_month: 0,
-                    start_day: 0,
-                    end_year: 0,
-                    end_month: 0,
-                    end_day: 0,
-                    selectedTypeMoving : this.tourInfo.type_moving_id,
-                    tour_period : this.tourInfo.tour_period,
+                    start_year: this.tourInfo[0].start_year,
+                    start_month: this.tourInfo[0].start_month,
+                    start_day: this.tourInfo[0].start_day,
+                    end_year: this.tourInfo[0].end_year,
+                    end_month: this.tourInfo[0].end_month,
+                    end_day: this.tourInfo[0].end_day,
+                    selectedTypeMoving : this.tourInfo[0].selectedTypeMoving,
+                    tour_period : this.tourInfo[0].tour_period,
                 }
         }
     },
@@ -152,7 +150,7 @@ export default {
         // },
     },
     created() {
-        this.setDateInputs();
+        // this.setDateInputs();
     },
     watch: {
         detail: {

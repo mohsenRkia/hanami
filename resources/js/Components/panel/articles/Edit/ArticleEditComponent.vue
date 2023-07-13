@@ -103,7 +103,19 @@ export default {
             childImageData: [],
             category_id: this.article.category_id,
             status: this.article.status,
-            tourInfo : this.article.tour_main_detail ? this.article.tour_main_detail : []
+            tourInfo : this.article.tour_main_detail ? [
+                {
+                    start_year:this.article.tour_main_detail.start_day[0],
+                    start_month:this.article.tour_main_detail.start_day[1],
+                    start_day:this.article.tour_main_detail.start_day[2],
+                    end_year:this.article.tour_main_detail.end_day[0],
+                    end_month:this.article.tour_main_detail.end_day[1],
+                    end_day:this.article.tour_main_detail.end_day[2],
+                    selectedTypeMoving:this.article.tour_main_detail.type_moving_id,
+                    tour_period:this.article.tour_main_detail.tour_period
+
+                }
+            ] : []
         }
     },
     watch: {
