@@ -14,6 +14,7 @@
                         @image-event="imageEvent"
                         :mediaable-id="mediaableId"
                         :old-image="oldImage"
+                        :tag="tagMediable"
                     />
                 </div>
                 <div v-show="video_type" class="m2-video-uploading-part col-md-6">
@@ -24,6 +25,7 @@
                         :mediaable-id="mediaableId"
                         :old-image="oldVideo"
                         type="video"
+                        :tag="tagMediable"
                     />
                 </div>
                 <div v-show="audio_type" class="m2-video-uploading-part col-md-6">
@@ -34,6 +36,7 @@
                         :mediaable-id="mediaableId"
                         :old-image="oldAudio"
                         type="audio"
+                        :tag="tagMediable"
                     />
                 </div>
                 <div v-show="document_type" class="m2-video-uploading-part col-md-6">
@@ -44,6 +47,7 @@
                         :mediaable-id="mediaableId"
                         :old-image="oldDocument"
                         type="document"
+                        :tag="tagMediable"
                     />
                 </div>
 
@@ -62,7 +66,7 @@ import BodyUploadComponent from "@/Components/Uploader/BodyUploadComponent.vue";
 export default {
     name: "UploadComponent",
     components: {BodyUploadComponent, VideoUploadComponent},
-    props: ['imageEvent','mediaableId','oldImage','oldVideo','videoEvent','oldAudio','audioEvent','oldDocument','documentEvent','fileTypes','module','model'],
+    props: ['imageEvent','mediaableId','oldImage','oldVideo','videoEvent','oldAudio','audioEvent','oldDocument','documentEvent','fileTypes','module','model','tagMediable'],
     data(){
         return {
             image_type : false,

@@ -77,7 +77,7 @@ export default {
         ShowUploadedDocumentComponent,
         ShowUploadedAudioComponent,
         ShowUploadedVideoComponent, ShowUploadedImageComponent, UploadErrorsComponent, UploadSucceededComponent},
-    props: ['module','model','type','componentTitle', 'oldImage', 'mediaableId'],
+    props: ['module','model','type','componentTitle', 'oldImage', 'mediaableId','tag'],
     data: function () {
         return {
             fileChoosed: [],
@@ -96,7 +96,7 @@ export default {
             this.uploading = true;
             let formData = new FormData();
             formData.append('file', this.fileChoosed[0]);
-            axios.post(`/panel/uploader/images/upload/${this.module}/${this.model}/${this.type}/${this.mediaableId}`, formData, {
+            axios.post(`/panel/uploader/images/upload/${this.module}/${this.model}/${this.tag}/${this.mediaableId}`, formData, {
                 onUploadProgress: e => {
                     if (e.lengthComputable) {
                         this.progress = Math.round((e.loaded / e.total) * 100) + '%';
@@ -127,7 +127,7 @@ export default {
         //Getting List Of Images
         gettingListOfImages: function () {
             this.image = ''
-            axios.get(`/panel/uploader/images/initiate/${this.module}/${this.model}/${this.type}/${this.mediaableId}`)
+            axios.get(`/panel/uploader/images/initiate/${this.module}/${this.model}/${this.tag}/${this.mediaableId}`)
                 .then(res => {
                     console.log(res.data)
                     this.image = res.data
@@ -137,7 +137,7 @@ export default {
         },
         gettingListOfAudios: function () {
             this.image = ''
-            axios.get(`/panel/${this.type}/initiate/${this.mediaableId}`)
+            axios.get(`/panel/${this.tag}/initiate/${this.mediaableId}`)
                 .then(res => {
                     this.mediaUploaded.push(res.data)
                 })
@@ -146,7 +146,7 @@ export default {
         },
         removeAudio(id) {
             console.log(id)
-            axios.post(`/panel/${this.type}/delete/${this.mediaableId}}/${id}`)
+            axios.post(`/panel/${this.tag}/delete/${this.mediaableId}}/${id}`)
                 .then(() => {
                     this.image = ''
                     this.fileChoosed = []
@@ -157,7 +157,7 @@ export default {
         },
         removeImage(e) {
             e.preventDefault()
-            axios.post(`/panel/uploader/images/delete/${this.module}/${this.model}/${this.type}/${this.mediaableId}`)
+            axios.post(`/panel/uploader/images/delete/${this.module}/${this.model}/${this.tag}/${this.mediaableId}`)
                 .then(() => {
                     this.image = ''
                     this.fileChoosed = []

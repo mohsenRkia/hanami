@@ -54,11 +54,19 @@
             </div>
         </div>
         <div v-if="newArticleId > 0" class="row">
-            <UploadComponent v-show="newArticleId != null" :mediaable-id="newArticleId"/>
+            <div class="col-md-12">
+                <upload-component
+                    :module="module"
+                    :model="model"
+                    :mediaable-id="newArticleId"
+                    @image-event="onChangedImage"
+                    file-types="image"
+                />
+            </div>
         </div>
         <template v-if="currentType === 'tour'">
-            <TourInfoComponent @tour-info-inputs="onChangedTourInfo" :article-type-movings = "articleTypeMovings"
-                           :article-id="newArticleId"></TourInfoComponent>
+            <TourInfoComponent @tour-info-inputs="onChangedTourInfo" :article-type-movings="articleTypeMovings"
+                               :article-id="newArticleId"></TourInfoComponent>
         </template>
     </div>
     <div class="col-lg-12">
@@ -77,7 +85,7 @@ import TourInfoComponent from "@/Components/panel/articles/Add/detailes/TourInfo
 
 export default {
     name: "ArticleComponent",
-    props: ['articleTypes', 'articleCategories','articleTypeMovings'],
+    props: ['articleTypes', 'articleCategories', 'articleTypeMovings', 'module', 'model'],
     components: {
         TourInfoComponent,
         ContentComponent,
@@ -94,7 +102,7 @@ export default {
             childImageData: [],
             category_id: 0,
             status: null,
-            tourInfo : []
+            tourInfo: []
         }
     },
     watch: {
@@ -118,6 +126,10 @@ export default {
         }
     },
     methods: {
+        onChangedImage(value) {
+            this.childImageData = []
+            Array.prototype.push.apply(this.childImageData, JSON.parse(JSON.stringify(value)))
+        },
         onChangedContent(value) {
             this.childContentData = []
             this.childContentData.push(JSON.parse(JSON.stringify(value)))
@@ -150,8 +162,8 @@ export default {
                 type: this.currentType,
                 category_id: this.category_id,
                 data: this.childContentData[0],
-                status : this.status,
-                tour_info : this.tourInfo[0]
+                status: this.status,
+                tour_info: this.tourInfo[0]
                 // book: this.childBookData[0],
             }, constants.AXIOS_HEADER).then((response) => {
                 console.log(response.data)

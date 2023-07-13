@@ -5,10 +5,11 @@ namespace Modules\Article\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Tour\Entities\TourMainDetail;
+use Plank\Mediable\Mediable;
 
 class Article extends Model
 {
-    use HasFactory;
+    use HasFactory,Mediable;
 
     protected $fillable = [
         'title',

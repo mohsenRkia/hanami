@@ -52,7 +52,17 @@
             </div>
         </div>
         <div class="row">
-            <UploadComponent :mediaable-id="article.id"/>
+            <div class="col-md-12">
+                <upload-component
+                    :module="module"
+                    :model="model"
+                    :mediaable-id="article.id"
+                    @image-event="onChangedImage"
+                    :old-image="oldImage"
+                    file-types="image"
+                    :tag-mediable="tagMediable"
+                />
+            </div>
         </div>
         <template v-if="currentType === 'tour'">
             <TourInfoEditComponent
@@ -80,7 +90,7 @@ import TourInfoEditComponent from "@/Components/panel/articles/Edit/detailes/Tou
 
 export default {
     name: "ArticleEditComponent",
-    props: ['articleTypes', 'articleCategories','article','articleTypeMovings'],
+    props: ['articleTypes', 'articleCategories','article','articleTypeMovings','module','model','oldImage','tagMediable'],
     components: {
         TourInfoEditComponent,
         ContentComponent,
@@ -100,6 +110,10 @@ export default {
 
     },
     methods: {
+        onChangedImage(value) {
+            this.childImageData = []
+            Array.prototype.push.apply(this.childImageData, JSON.parse(JSON.stringify(value)))
+        },
         onChangedContent(value) {
             this.childContentData = []
             this.childContentData.push(JSON.parse(JSON.stringify(value)))

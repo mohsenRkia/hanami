@@ -16,6 +16,10 @@
                     :article-categories = "{{json_encode($categories)}}"
                     :article-types= "{{json_encode($articleTypes)}}"
                     :article-type-movings= "{{json_encode($typeMovings)}}"
+                    module="Article"
+                    model="Article"
+                    tag-mediable="Tour"
+                    :old-image="{{json_encode($image)}}"
                 ></article-edit-main-component>
             </div>
         </div><!-- end form-box -->

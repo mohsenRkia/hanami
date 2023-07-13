@@ -7,6 +7,7 @@
             @image-event="onChangedImage"
             :old-image="oldImage"
             file-types="image"
+            tag-mediable="image"
         />
     </div>
 </template>
