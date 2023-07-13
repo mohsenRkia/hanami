@@ -15,6 +15,7 @@ export default {
     props: ['image'],
     methods:{
         clicked (event){
+            event.preventDefault()
             this.$emit('on-remove-image',event)
         }
     }
