@@ -14,4 +14,12 @@ class ArticleTypeServices
     {
         return $this->articleType->all('name','id','slug');
     }
+    public function allWithoutTour()
+    {
+        return $this->articleType->where('slug','!=','tour')->get(['name','id','slug']);
+    }
+    public function getTour()
+    {
+        return $this->articleType->where('slug','tour')->get(['slug','name','id']);
+    }
 }

@@ -17,7 +17,7 @@
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu toggle-menu list-items">
 
-                <li class="page-active"><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>داشبرد</a></li>
+                <li><a href="{{route('panel.dashboard')}}"><i class="la la-dashboard mr-2"></i>داشبرد</a></li>
                 <li><a href="{{route('categories.index')}}"><i class="la la-deaf mr-2 text-color-4"></i>دسته بندی ها</a></li>
                 <li><a href="{{route('sliders.index')}}"><i class="la la-sliders mr-2 text-color-4"></i>اسلایدرها</a></li>
                 <li><a href="admin-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color"></i>رزرو</a></li>
@@ -39,7 +39,9 @@
                         <li><a href="admin-dashboard-traveler-detail.html">مشخصات مسافر</a></li>
                     </ul>
                 </li>
-                <li><a href="{{route('panel.tours.index')}}"><i class="la la-plane mr-2 text-color-4"></i>فهرست تورها</a></li>
+                <li {{request()->route()->getName() == 'panel.articles.index' ? "class=page-active" : null}}><a href="{{route('panel.articles.index')}}"><i class="la la-newspaper mr-2 text-color-2"></i>فهرست مطالب</a></li>
+                <li {{request()->route()->getName() == 'panel.tours.index' ? "class=page-active" : null}}><a href="{{route('panel.tours.index')}}"><i class="la la-plane mr-2 text-color-4"></i>فهرست تورها</a></li>
+
                 <li><a href="admin-dashboard-reviews.html"><i class="la la-star mr-2 text-color-5"></i>نظرات</a></li>
                 <li><a href="{{route('panel.contactUs')}}"><i class="la la-star-and-crescent mr-2 text-color-5"></i>ارتباط با ما</a></li>
                 <li><a href="admin-dashboard-wishlist.html"><i class="la la-heart mr-2 text-color-6"></i>لیست علاقه مندی ها</a></li>

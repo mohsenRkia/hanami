@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Article\Http\Controllers\ArticleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,10 @@
 |
 */
 
-Route::prefix('article')->group(function() {
-    Route::get('/', 'ArticleController@index');
+Route::prefix('panel')->name('panel.')->group(function () {
+    Route::prefix('article')->group(function () {
+        Route::resource('/articles', ArticleController::class);
+    });
+    Route::post('/articles/quick/store', [ArticleController::class,'quickStore']);
+    Route::put('/articles/update/{id}', [ArticleController::class,'updateArticle']);
 });

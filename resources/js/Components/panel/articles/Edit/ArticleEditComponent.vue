@@ -71,6 +71,26 @@
                 :article-id="article.id"
                 :tour-info = "tourInfo"
             ></TourInfoEditComponent>
+            <KeyValueComponent
+                subject="خدمات تور"
+                :article-id = "article.id"
+                route="tours/otherDetails"
+                :old-fa-keys="oldFaKeys"
+                />
+            <TourDestinationsComponent
+                subject="مقاصد"
+                :cities="cities"
+                route = "tours/tourDestinations"
+                :old-fa-keys="oldDestinationsKeys"
+                :article-id = "article.id"
+                />
+            <TourPlansComponent
+                subject="برنامه سفر تور"
+                :type-movings="articleTypeMovings"
+                route = "tours/tourPlans"
+                :old-fa-keys="oldPlansKeys"
+                :article-id = "article.id"
+                />
         </template>
     </div>
     <div class="col-lg-12">
@@ -84,14 +104,20 @@
 <script>
 import constants from "@/constants.js";
 import ContentComponent from "@/Components/panel/articles/Edit/ContentEditComponent.vue";
-import HEADER from "@/constants.js";
 import UploadComponent from "@/components/Uploader/UploadComponent.vue";
 import TourInfoEditComponent from "@/Components/panel/articles/Edit/detailes/TourInfoEditComponent.vue";
+import KeyValueComponent from "@/Components/panel/key/KeyValueComponent.vue";
+import TourDestinationsComponent from "@/Components/panel/articles/TourDestinations/TourDestinationsComponent.vue";
+import TourPlansComponent from "@/Components/panel/articles/TourPlans/TourPlans.vue";
 
 export default {
     name: "ArticleEditComponent",
-    props: ['articleTypes', 'articleCategories','article','articleTypeMovings','module','model','oldImage','tagMediable'],
+    props: ['articleType','articleTypes', 'articleCategories','article','articleTypeMovings',
+        'module','model','oldImage','tagMediable','oldFaKeys','cities','oldDestinationsKeys','oldPlansKeys'],
     components: {
+        TourPlansComponent,
+        TourDestinationsComponent,
+        KeyValueComponent,
         TourInfoEditComponent,
         ContentComponent,
         UploadComponent,
@@ -135,7 +161,7 @@ export default {
             this.tourInfo.push(JSON.parse(JSON.stringify(value)))
         },
         updateArticle() {
-            axios.put(`/panel/tours/update/${this.article.id}`, {
+            axios.put(`/panel/${this.articleType}/update/${this.article.id}`, {
                 type: this.currentType,
                 status : this.status,
                 category_id: this.category_id,
@@ -151,7 +177,11 @@ export default {
                     'success'
                 )
                 setTimeout(() => {
-                    // location.replace('/panel/tours')
+                    if (this.articleType == 'tours') {
+                        location.replace(`/panel/tours`)
+                    } else {
+                        location.replace(`/panel/article/articles`)
+                    }
                 }, 2000)
             }).catch((e) => {
                 this.$swal({

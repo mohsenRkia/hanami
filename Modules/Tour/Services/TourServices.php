@@ -37,7 +37,6 @@ class TourServices
 
     public function updateTour($request, $id)
     {
-//        return $request->tour_info['start_year'];
         $data = (object)$request->data;
 
         $article = $this->article->find($id);

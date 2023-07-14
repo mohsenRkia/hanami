@@ -5,9 +5,15 @@ namespace Modules\Tour\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Article\Entities\Article;
 use Modules\Article\Services\ArticleTypeServices;
 use Modules\Category\Services\CategoryServices;
+use Modules\Loction\Services\CitiesServices;
+use Modules\Tour\Http\Requests\OtherDetailStoreRequest;
+use Modules\Tour\Http\Requests\TourDestinationsStoreRequest;
+use Modules\Tour\Http\Requests\TourPlansStoreRequest;
+use Modules\Tour\Services\OtherDetailTourServices;
+use Modules\Tour\Services\TourDestinationsServices;
+use Modules\Tour\Services\TourPlansServices;
 use Modules\Tour\Services\TourServices;
 use Modules\Tour\Services\TypeMovingServices;
 
@@ -17,7 +23,11 @@ class TourController extends Controller
         private TourServices $tourServices,
         private CategoryServices $categoryServices,
         private ArticleTypeServices $articleTypeServices,
-        private TypeMovingServices $typeMovingServices
+        private TypeMovingServices $typeMovingServices,
+        private OtherDetailTourServices $otherDetailTourServices,
+        private CitiesServices $citiesServices,
+        private TourDestinationsServices $tourDestinationsServices,
+        private TourPlansServices $tourPlansServices,
     ){}
 
     /**
@@ -37,10 +47,11 @@ class TourController extends Controller
     public function create()
     {
         $categories = $this->categoryServices->all();
-        $articleTypes = $this->articleTypeServices->all();
+        $articleTypes = $this->articleTypeServices->getTour();
         $typeMovings = $this->typeMovingServices->all();
+        $cities = $this->citiesServices->all();
 
-        return view('tour::tours.create',compact('categories','articleTypes','typeMovings'));
+        return view('tour::tours.create',compact('cities','categories','articleTypes','typeMovings'));
     }
     public function quickStoreTour(Request $request)
     {
@@ -65,12 +76,15 @@ class TourController extends Controller
     public function edit($id)
     {
         $categories = $this->categoryServices->all();
-        $articleTypes = $this->articleTypeServices->all();
+        $articleTypes = $this->articleTypeServices->getTour();
         $typeMovings = $this->typeMovingServices->all();
         $tour = $this->tourServices->findTourWithRelations($id);
         $image = $tour->getMedia('Tour')->first() ? $tour->getMedia('Tour')->first()->findVariant('thumb')->getUrl() : null;
-//        dd($tour->toArray());
-        return view('tour::tours.edit', compact('image','tour','categories','articleTypes','typeMovings'));
+        $oldOtherDetail = $this->otherDetailTourServices->all();
+        $oldDestinations = $this->tourDestinationsServices->all($id);
+        $cities = $this->citiesServices->all();
+        $oldPlansKeys = $this->tourPlansServices->all($id);
+        return view('tour::tours.edit', compact('oldPlansKeys','oldDestinations','cities','oldOtherDetail','image','tour','categories','articleTypes','typeMovings'));
     }
 
     /**
@@ -93,5 +107,18 @@ class TourController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function otherDetails(OtherDetailStoreRequest $request,$articleId)
+    {
+        return $this->otherDetailTourServices->update($request,$articleId);
+    }
+    public function tourDestinations(TourDestinationsStoreRequest $request,$articleId)
+    {
+        return $this->tourDestinationsServices->update($request,$articleId);
+    }
+    public function tourPlans(TourPlansStoreRequest $request,$articleId)
+    {
+        return $this->tourPlansServices->update($request,$articleId);
     }
 }

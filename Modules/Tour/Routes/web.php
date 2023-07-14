@@ -20,5 +20,8 @@ Route::prefix('panel')->name('panel.')->group(function () {
         Route::get('/edit/{id}', [TourController::class,'edit'])->name('edit');
         Route::post('/quick/store', [TourController::class,'quickStoreTour']);
         Route::put('/update/{tour}', [TourController::class,'update']);
+        Route::post('/otherDetails/update/{articleId}', [TourController::class,'otherDetails']);
+        Route::post('/tourDestinations/update/{articleId}', [TourController::class,'tourDestinations']);
+        Route::post('/tourPlans/update/{articleId}', [TourController::class,'tourPlans']);
     });
 });

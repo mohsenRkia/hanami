@@ -1,5 +1,6 @@
 <template>
     <div class="row mt-2">
+        <hr>
         <div class="row col-6">
             <div class="col-12">
                 <span class="text-danger">*</span>

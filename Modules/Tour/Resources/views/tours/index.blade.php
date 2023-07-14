@@ -6,7 +6,7 @@
 
 @section('panel-content')
     <div class="col-lg-12">
-        <div class="form-box">
+        <div id="app" class="form-box">
             <div class="form-title-wrap">
                 <h3 class="title">لیست تور ها</h3>
                 <a href="{{route('panel.tours.create')}}" type="button"
@@ -44,10 +44,10 @@
                                 <td>
                                     <div class="table-content">
                                         <a href="{{route('panel.tours.edit' , ['id' => $tour->id])}}"
-                                           class="theme-btn theme-btn-small" data-toggle="tooltip"
+                                           class="theme-btn theme-btn-small mx-2" data-toggle="tooltip"
                                            data-placement="top" title="ویرایش"><i class="la la-edit"></i></a>
-                                        <delete-component item-id="{{$tour->id}}" post-type="tours"
-                                                          post-module="tour"></delete-component>
+                                        <delete-component item-id="{{$tour->id}}" post-type="articles"
+                                                          post-module="article"></delete-component>
 
                                     </div>
                                 </td>
